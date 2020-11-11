@@ -1,28 +1,27 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="ru">
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
-      <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
-      <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
-      <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
-      <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
-      <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
-      <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
-      <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
-      <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
-      <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-icon-192x192.png">
-      <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-      <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-      <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-      <!--	<link rel="manifest" href="favicon/manifest.json">-->
+      <link rel="apple-touch-icon" sizes="57x57" href="src/favicon/apple-icon-57x57.png">
+      <link rel="apple-touch-icon" sizes="60x60" href="src/favicon/apple-icon-60x60.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="src/favicon/apple-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="76x76" href="src/favicon/apple-icon-76x76.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="src/favicon/apple-icon-114x114.png">
+      <link rel="apple-touch-icon" sizes="120x120" href="src/favicon/apple-icon-120x120.png">
+      <link rel="apple-touch-icon" sizes="144x144" href="src/favicon/apple-icon-144x144.png">
+      <link rel="apple-touch-icon" sizes="152x152" href="src/favicon/apple-icon-152x152.png">
+      <link rel="apple-touch-icon" sizes="180x180" href="src/favicon/apple-icon-180x180.png">
+      <link rel="icon" type="image/png" sizes="192x192" href="src/favicon/android-icon-192x192.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="src/favicon/src/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="96x96" href="src/favicon/src/favicon-96x96.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="src/favicon/src/favicon-16x16.png">
       <meta name="msapplication-TileColor" content="#ffffff">
-      <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
+      <meta name="msapplication-TileImage" content="src/favicon/ms-icon-144x144.png">
       <meta name="theme-color" content="#ffffff">
-      <link rel="stylesheet" href="style/bootstrap.min.css">
-      <link rel="stylesheet" href="./scss/style.css">
+      <link rel="stylesheet" href="src/style/bootstrap.min.css">
+      <link rel="stylesheet" href="src/scss/style.css">
       <title>AliJSpress</title>
    </head>
    <body>
@@ -82,23 +81,6 @@
                <div class="col-12 col-sm-6 col-md-9 col-xl-10">
                   <div class="container">
                      <div id="cards-wrapper" class="row no-gutters justify-content-center">
-                        <!-- КАРТОЧКИ ТОВАРОВ -->
-                        <!-- <div class="card-wrapper col-12 col-md-6 col-lg-4 col-xl-3 pb-3">
-                           <div class="card">
-                           	<div class="card-img-wrapper">
-                           		<img class="card-img-top" src="img/temp.png" alt="">
-                           		<button class="card-add-wishlist"></button>
-                           	</div>
-                           	<div class="card-body justify-content-between">
-                           		<a href="#" class="card-title">Имя товара</a>
-                           		<div class="card-price">100000 ₽</div>
-                           		<div>
-                           			<button class="card-add-basket">Добавить в корзину</button>
-                           		</div>
-                           	</div>
-                           </div>
-                           </div> -->
-                        <!-- END КАРТОЧКИ ТОВАРОВ -->
                      </div>
                   </div>
                </div>
@@ -112,38 +94,15 @@
                <div class="basket-total">Общая сумма: <span>0</span> руб</div>
             </div>
             <div id="basket-wrapper">
-               <!-- <div id="basket-empty">
-                  Ваша корзина пока пуста
-                  </div> -->
-               <!-- <div class="goods">
-                  <div class="goods-img-wrapper">
-                  	<img class="goods-img" src="img/temp.png" alt="">
-                  
-                  </div>
-                  <div class="goods-description">
-                  	<h2 class="goods-title">Название товара</h2>
-                  	<p class="goods-price">100000 ₽</p>
-                  
-                  </div>
-                  <div class="goods-price-count">
-                  	<div class="goods-trigger">
-                  		<button class="goods-add-wishlist"></button>
-                  		<button class="goods-delete"></button>
-                  	</div>
-                  	<div class="goods-count">1</div>
-                  </div>
-                  </div> -->
             </div>
             <button class="btn btn-primary basket-confirm">Оформить заказ</button>
             <div id="basket-close">
             </div>
          </div>
       </div>
-      <script src="script/scriptmain.js"></script>
+      <script>
+         var cards = <%=cards %>;
+      </script>
+      <script src="src/script/scriptmain.js"></script>
    </body>
 </html>
-<!-- spinner
-   <div id="spinner"><div class="spinner-loading"><div><div><div></div>
-   </div><div><div></div></div><div><div></div></div><div><div></div></div></div></div></div>
-   
-   -->

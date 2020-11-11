@@ -1,0 +1,75 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible' content='ie=edge')
+    link(rel='apple-touch-icon' sizes='57x57' href='src/favicon/apple-icon-57x57.png')
+    link(rel='apple-touch-icon' sizes='60x60' href='src/favicon/apple-icon-60x60.png')
+    link(rel='apple-touch-icon' sizes='72x72' href='src/favicon/apple-icon-72x72.png')
+    link(rel='apple-touch-icon' sizes='76x76' href='src/favicon/apple-icon-76x76.png')
+    link(rel='apple-touch-icon' sizes='114x114' href='src/favicon/apple-icon-114x114.png')
+    link(rel='apple-touch-icon' sizes='120x120' href='src/favicon/apple-icon-120x120.png')
+    link(rel='apple-touch-icon' sizes='144x144' href='src/favicon/apple-icon-144x144.png')
+    link(rel='apple-touch-icon' sizes='152x152' href='src/favicon/apple-icon-152x152.png')
+    link(rel='apple-touch-icon' sizes='180x180' href='src/favicon/apple-icon-180x180.png')
+    link(rel='icon' type='image/png' sizes='192x192' href='src/favicon/android-icon-192x192.png')
+    link(rel='icon' type='image/png' sizes='32x32' href='src/favicon/src/favicon-32x32.png')
+    link(rel='icon' type='image/png' sizes='96x96' href='src/favicon/src/favicon-96x96.png')
+    link(rel='icon' type='image/png' sizes='16x16' href='src/favicon/src/favicon-16x16.png')
+    meta(name='msapplication-TileColor' content='#ffffff')
+    meta(name='msapplication-TileImage' content='src/favicon/ms-icon-144x144.png')
+    meta(name='theme-color' content='#ffffff')
+    link(rel='stylesheet' href='src/style/bootstrap.min.css')
+    link(rel='stylesheet' href='src/scss/style.css')
+    title AliJSpress
+header
+    nav
+        .container
+            .row.justify-content-between.align-items-center
+                a.logo(href='index.html')
+                form#search
+                    .search-wrapper
+                        input#searchGoods.search-wrapper_input(type='text' role='search' placeholder='Введите название...')
+                    div
+                        button#search-clear &#x274C;
+                    .search-wrap-btn
+                        button#search-btn.search-btn(type='submit' aria-label='Поиск товаров')
+                a#basket-main-btn.nav-elements(href='#')
+                    span.counter 0
+                a#favorites-btn.nav-elements(href='#')
+                    span.counter 0
+main
+    .container
+        .row.justify-content-center.justify-content-sm-between
+            .col-6.col-sm-4.col-md-3.col-xl-2
+                #category
+                    .category-title
+                        h5 Категории
+                    ul.category-list
+                        li
+                            a.category-item.category-item__mobile(href='#' data-category='mobile') Телефоны и аксессуары
+                        li
+                            a.category-item.category-item__pc(href='#' data-category='pc') Компьютеры и оргтехника
+                        li
+                            a.category-item.category-item__electron(href='#' data-category='electron') Электроника
+                        li
+                            a.category-item.category-item__home(href='#' data-category='home') Бытовая Техника
+                        li
+                            a.category-item.category-item__sport(href='#' data-category='sport') Спорт и развлечения
+            .col-12.col-sm-6.col-md-9.col-xl-10
+                .container
+                    #cards-wrapper.row.no-gutters.justify-content-center
+#basket
+    .basket-body
+        .basket-head
+            .basket-title Корзина
+            .basket-total
+                | Общая сумма:
+                span 0
+                |  руб
+        #basket-wrapper
+        button.btn.btn-primary.basket-confirm Оформить заказ
+        #basket-close
+script.
+    let cardsData = !{cards};
+script(src='src/script/scriptmain.js')
