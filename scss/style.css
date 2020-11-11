@@ -1,8 +1,7 @@
 @keyframes show{0%{opacity:0}to{opacity:1}}
 @keyframes error{0%{border:3px solid #FF4747}25%{border:3px solid #0059FF}50%{border:3px solid #ff9a00}75%{border:3px solid #FF63F5}100%{border:3px solid #FF4747}}
 
-body{font-family:Open Sans,Arial,Helvetica,sans-serif;
-	background:#f2f2f2}
+body{font-family:Open Sans,Arial,Helvetica,sans-serif;}
 ul{list-style:none;margin:0;padding:0}
 
 input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;-moz-appearance:none;appearance:none;margin:0}
@@ -38,104 +37,50 @@ button:focus{outline:transparent}
 
 .btn:hover{
 	color:#fff;
-	background-color:#004ed6
-}
-.container{
-	max-width:1280px;
-	width:100%
-}
-.category-title{
-	font-size:30px;
-	font-weight:400;
-	margin-bottom:0
-}
+	background-color:#004ed6}
 .category-count{
 	margin-left:4px;
 	font-size:12px;
-	color:#999
-}
-nav{
-	margin:10px 0;
-}
-nav .logo{
+	color:#99}
+.header-main{
+	background-color:#EF870C;
+	margin-bottom: 2px}
+.header-categoty{
+	background-color:#E9D5AE}
+.container{
+	display: flex;
+	justify-content: space-between}
+.container-mini {
+	display: flex;
+	align-items:center}
+.logo{
 	display:block;
-	height:96px;
-	width:212px;
+	height:60px;
+	width:250px;
 	margin-left:15px;
 	margin-right:15px;
 	background-repeat:no-repeat;
 	background-size:contain;
 	background-position:0;
-	background-image:url(../img/temp/ailexpresslogo.png)
-}
-nav .catalog{
-	position:absolute;
-	display:none;
-	top:40px;
-	left:0;
-	z-index:120;
-	background:#fff;
-	border:2px solid #FF4747;
-	width:118px
-}
-nav .catalog ul{
-	list-style:none;
-	margin:0;
-	padding:10px;
-	text-align:center
-}
-nav .catalog ul li{
-	border-bottom:1px solid #000
-}
-nav .catalog ul li:last-child{
-	border-bottom:none
-}
-nav .catalog ul li:hover{
-	background-color:#333;
-	color:#c5c5c5
-}
-nav .catalog-button{
-	flex-basis:135px;
-	cursor:pointer;
-	position:relative
-}
-nav .catalog-button button{
-	width:118px;
-	height:40px;
-	border-radius:3px;
-	background-color:#FF4747;
-	color:#fff;
-	font-weight:700;
-	padding:0;border:0;
-	display:flex;
-	align-items:center;
-	justify-content:center;
-	font-size:14px;
-	line-height:18px;
-	font-family:GTEestiProDisplay,Arial,sans-serif;
-	cursor:pointer
-}
-nav .catalog-button_burger{
+	background-image:url(../img/temp/ailexpresslogo.png);
+	background-size: cover}
+.catalog-button_burger{
 	width:24px;
 	height:24px;
 	margin-right:12px;
 	background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath fill='%23fff' d='M9 5h12a1 1 0 010 2H9a1 1 0 110-2zm0 6h12a1 1 0 010 2H9a1 1 0 010-2zm0 6h6a1 1 0 010 2H9a1 1 0 010-2zM3.5 7.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm0 6a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm0 6a1.5 1.5 0 110-3 1.5 1.5 0 010 3z'/%3E%3C/svg%3E")}
-nav #search{
+
+#search{
 	display:flex;
-	position:relative;
-	flex-grow:1;
-	border:3px solid #FF4747;
-	border-radius: 3px;
-}
-nav .search-wrapper{
+	width: 420px;
+	background-color: #E9D5AF}
+.search-wrapper{
 	justify-content:flex-start;
 	border-right-width:0;
-	border-radius:3px 0 0 3px;
 	align-items:stretch;
 	height:36px;
-	width:100%
-}
-nav .search-wrapper_input{
+	width:100%}
+.search-wrapper_input{
 	width:100%;
 	height:100%;
 	box-sizing:border-box;
@@ -145,14 +90,14 @@ nav .search-wrapper_input{
 	font-size:14px;
 	font-family:GTEestiProText,Arial,sans-serif;
 	color:#001a34;
+	background-color: #E9D5AE;
 	line-height:18px;
 	outline:none;
 	vertical-align:middle;
-	border-radius:2px 0 0 2px;
 	text-overflow:ellipsis;
 	box-shadow:none
 }
-nav .search-wrap-brn{
+.search-wrap-brn{
 	height:36px;
 	display:flex;
 	align-items:center;
@@ -162,28 +107,40 @@ nav .search-wrap-brn{
 	overflow:hidden;
 	background-color:#FF4747
 }
-nav .search-btn{
+.search-btn{
 	cursor:pointer;
 	border-color:transparent;
 	height:100%;
 	width:100%;
-	background-color:#FF4747;
+	background-color:#E9D5AE;
 	border:none
 }
-nav .search-btn::before{
+.search-btn::before{
 	content:"";
 	display:inline-block;
 	vertical-align:middle;
 	width:24px;
 	height:24px;
 	color:#fff;
-	background-image:url(../img/icons.png);
-	background-position:-8px -1328px
+	background-image:url(../img/search.svg);
+	background-size: contain
 }
 #search-clear{
-	border: none;
+	border-color: transparent;
 	height: 100%;
-	background-color: #fff;
+	width: 100%;
+	background-color: #E9D5AE;
+	border: none;
+}
+#search-clear::before{
+	content:"";
+	display:inline-block;
+	vertical-align:middle;
+	width:24px;
+	height:24px;
+	color:#fff;
+	background-image:url(../img/cross.svg);
+	background-size: contain
 }
 .nav-elements{
 	width:32px;
@@ -201,14 +158,14 @@ nav .search-btn::before{
 }
 .nav-elements .counter{
 	position:absolute;
-	top:-2px;
-	right:-10px;
+	top:-5px;
+	right:-15px;
 	height:16px;
 	border-radius:8px;
 	padding:0 8px;
-	background-color:#FF4747;
+	/*background-color:#FF4747;*/
 	color:#fff;
-	font-size:12px;
+	font-size:14px;
 	line-height:16px;
 	font-family:GTEestiProDisplay,Arial,sans-serif;
 	font-weight:700}
@@ -232,74 +189,37 @@ nav .search-btn::before{
 	font-family:GTEestiProDisplay,Arial,sans-serif;
 	font-size:14px;
 	line-height:18px}
+#category{margin-bottom: 40px;padding-top: 10px}
 
 #favorites-btn{
-	background-image:url(../img/icons.png);
-	background-position:1px -3592px}
+	background-image:url(../img/favourite.svg);background-size: contain}
 
-#favorites-btn:hover{
-	background-position:1px -3642px}
 
 #basket-main-btn{
-	background-image:url(../img/icons.png);
-	background-position:0 -2895px}
-
-#basket-main-btn:hover{background-position:0 -2947px}
-
-.category{
-	display:flex;
-	flex-direction:column;
-	font-weight:700;
-	margin-top:15%}
+	background-image:url(../img/cart-alt1.svg);background-size: contain}
 
 .category_title{
 	display:block;
 	font-size:14px;line-height:13px;margin-bottom:10px;font-weight:700}
 
 .category-item{
-	position:relative;display:inline-block;padding-left:22px;
+	padding-left:22px;
 	height:30px;color:black;font-size:14px;
 	text-overflow:ellipsis;white-space:nowrap}
 
-.category-item:hover{color:#FF4747}
+.category-item:hover{color:#FF4747;text-decoration:none}
 
-.category-item:before{
-	display:block;
-	position:absolute;
-	left:-2px;
-	top:-2px;
-	content:"";
-	width:24px;
-	height:24px;
-	vertical-align:top;
-	background-image:url(../img/icons.png);
-	background-repeat:no-repeat}
 
-.category-item__pc:before{background-position:0 -675px}
-
-.category-item__mobile:before{background-position:0 -2999px}
-
-.category-item__home:before{background-position:0 -1571px}
-
-.category-item__sport:before{background-position:0 -3504px}
-
-.category-item__electron:before{background-position:0 -763px}
-
-.category-item__pc:hover:before{background-position:0 -719px}
-
-.category-item__mobile:hover:before{background-position:0 -3043px}
-
-.category-item__home:hover:before{background-position:0 -1615px}
-
-.category-item__sport:hover:before{background-position:0 -3548px}
-
-.category-item__electron:hover:before{background-position:0 -807px}
-
-.card{border:none;border-radius:8px;width:220px;top:0;left:0}
-
-.card-wrapper{position:relative}
+#cards-wrapper{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+.card-wrapper{width: 220px;margin-bottom: 20px;border: 1px solid #E9D5AE}
 
 .card-img-wrapper{
+	max-width: 100%;
 	position:relative;
 	display:flex;
 	margin:0 auto;
@@ -309,15 +229,13 @@ nav .search-btn::before{
 	background-size:220px 220px;
 	width:220px;
 	height:220px;
-	cursor:pointer;
-	border-top-left-radius:8px;
-	border-top-right-radius:8px}
+	cursor:pointer;}
 
 .card-img-top{
 	width:100%;height:100%;object-fit:cover;
-	background-position:center;background-size:contain;background-repeat:no-repeat}
+	background-position:center;background-size:contain;background-repeat:no-repeat;border-top-left-radius:0;border-top-right-radius:0}
 
-.card:hover{box-shadow:0 1px 8px 0 rgba(0,0,0,.08);position:absolute;z-index:1}
+.card:hover{box-shadow:0 1px 8px 0 rgba(0,0,0,.08)}
 
 .card:hover.card-title{white-space:normal}
 
@@ -336,10 +254,12 @@ nav .search-btn::before{
 
 .card-price{font-size:22px;font-weight:700;letter-spacing:.3px}
 
-.card-add-basket{display:none;margin:0 auto;background:#ff9a00;padding:3px 9px;min-width:165px;color:#fff;border-color:transparent;font-size:16px;border-radius:8px}
-
-.add-each-card, .delete-each-card{background:#ff9a00;min-width: 40px;color:#fff;border-color:transparent;border-radius:8px}
-
+.card-add-basket{display:none;margin:0 auto;background:#ff9a00;padding:3px 9px;min-width:165px;color:#fff;border-color:transparent;font-size:16px;}
+.add-each-card{background: #269926}
+.delete-each-card{background: #FF4747;}
+.add-each-card, .delete-each-card{min-width: 40px;color:#fff;border-color:transparent}
+.add-card{width: 200px;height: 40px;color:#fff;background:#269926;border-color:transparent}
+.add-card-active{color: #269926;background-color: #fff;border: 2px solid #269926;}
 .calc-content{
 	margin:0 10px;
 	padding-top: 3px;
@@ -370,7 +290,11 @@ nav .search-btn::before{
 	height:100%;
 	background-color:#00000050;
 	z-index:130}
-
+.basket{
+	display: flex;
+	justify-content: space-between;
+	padding: 10px 0 10px 0;
+}
 .basket-body{
 	position:relative;
 	margin:auto;
@@ -380,7 +304,6 @@ nav .search-btn::before{
 	background-color:#fff;
 	padding:25px;
 	overflow:auto;
-	border-radius:3px;
 	margin-left: 28%;} /*1400+*/
 
 .basket-title{font-size:28px;color:#4d5f71}
@@ -388,12 +311,11 @@ nav .search-btn::before{
 .basket-wrapper{
 	display:flex;justify-content:center;
 	flex-wrap:wrap;margin:25px 0;
-	background-color:#f2f2f2;border:1px solid #4d5f713f;
-	border-radius:3px;padding:20px}
+	background-color:#f2f2f2;border:1px solid #4d5f713f;padding:20px}
 
 .basket-wrapper #basket-empty{font-size:24px;color:#4d5f71}
 
-.basket-head{display:flex;justify-content:space-between}
+.basket-head{display:flex;justify-content:space-between;margin: 10px 0 20px 0}
 
 #basket-close{position:absolute;
 	top:5px;right:5px;
@@ -414,15 +336,14 @@ nav .search-btn::before{
 
 .basket .goods{
 	display:flex;width:100%;justify-content:space-between;
-	background-color:#fff;border-radius:8px;margin-bottom:10px}
+	background-color:#fff;margin-bottom:10px}
 
 .basket .goods-img{
-	max-width:120px;border-top-left-radius:8px;
-	border-bottom-left-radius:8px}
+	max-width:120px}
 
 .basket .goods-img-wrapper{flex-basis:120px}
 
-.basket .goods-description{padding:10px;flex-grow:1}
+.basket .goods-description{padding: 0 10px 0 10px;flex-grow:1}
 
 .basket .goods-title{font-size:16px}
 
@@ -491,11 +412,11 @@ nav .search-btn::before{
 
 .search.error{-webkit-animation:2s linear error;-o-animation:2s linear error;animation:2s linear error}
 
-.each-good{display: -webkit-flex;display: -moz-flex;display: -ms-flex;display: -o-flex;display: flex;-webkit-flex-direction: row;-moz-flex-direction: row;-ms-flex-direction: row;-o-flex-direction: row;flex-direction: row;}
-
+.each-good-content{display: -webkit-flex;display: -moz-flex;display: -ms-flex;display: -o-flex;display: flex;-webkit-flex-direction: row;-moz-flex-direction: row;-ms-flex-direction: row;-o-flex-direction: row;flex-direction: row;}
+.each-good p a{color: #FF4747}
 .each-good-img{margin-right: 20px;border-radius: 3px;max-width: 45%}
 
-.like-each-card{min-width:32px;height:32px;background-image:url(../img/icons.png);background-position:4px -2588px;border-radius:50%;opacity:1;box-shadow:0 4px 8px 0 rgba(0,0,0,.08);border:none;margin: 5px 0px 0px 20px}
+.like-each-card{min-width:32px;height:32px;background-image:url(../img/icons.png);background-position:4px -2588px;border-radius:50%;opacity:1;box-shadow:0 4px 8px 0 rgba(0,0,0,.08);border:none;margin-left: 30px}
 .like-each-card:hover{opacity: 1;animation: show 0.5s ease-in-out;background-color:#ccc}
 .like-each-card.active{opacity:1;background-position:4px -2632px}
 .each-good-description{max-width: 600px;}
@@ -504,3 +425,7 @@ nav .search-btn::before{
 .each-good-price{font-size: 28px;}
 
 .calc{display: -webkit-flex;display: -moz-flex;display: -ms-flex;display: -o-flex;display: flex;-webkit-flex-direction: row;-moz-flex-direction: row;-ms-flex-direction: row;-o-flex-direction: row;flex-direction: row;}
+@media (min-width: 1200px){
+	.container {
+		max-width: 1300px}
+	}

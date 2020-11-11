@@ -27,81 +27,63 @@
    </head>
    <body>
       <header>
-         <nav>
+         <div class="header-main">
             <div class="container">
-               <div class="row justify-content-between align-items-center">
-                  <a class="logo" href="index.html"></a>
+               <div class="container-mini">
+                  <a class="logo" href="#"></a>
                   <form id="search">
                      <div class="search-wrapper">
-                        <input id="searchGoods" class="search-wrapper_input" type="text" role="search" placeholder="Введите название...">
+                        <input id="searchGoods" class="search-wrapper_input" type="text" role="search" placeholder="Поиск">
                      </div>
                      <div>
-                        <button id="search-clear">❌</button>
+                        <button id="search-clear"></button>
                      </div>
                      <div class="search-wrap-btn">
                         <button type="submit" class="search-btn" id="search-btn" aria-label="Поиск товаров"></button>
                      </div>
                   </form>
+               </div>
+               <div class="container-mini">
                   <a href="#" class="nav-elements" id="basket-main-btn">
-	                  <span class="counter">0</span>
+                      <span class="counter">0</span>
                   </a>
                   <a href="#" class="nav-elements" id="favorites-btn">
-	                  <span class="counter">0</span>
+                      <span class="counter">0</span>
                   </a>
                </div>
             </div>
-         </nav>
+         </div>
+         <div class="header-categoty">
+            <div id="category" class="container">
+               <a href="#" class="category-item" data-category="mobile">Телефоны и аксессуары</a>
+               <a href="#" class="category-item" data-category="pc">Компьютеры и оргтехника</a>
+               <a href="#" class="category-item" data-category="electron">Электроника</a>
+               <a href="#" class="category-item" data-category="home">Бытовая Техника</a>
+               <a href="#" class="category-item" data-category="sport">Спорт и развлечения</a>
+            </div>
+         </div>
+
       </header>
       <main>
          <div class="container">
-            <div class="row justify-content-center justify-content-sm-between">
-               <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-                  <div id="category">
-                     <div class="category-title">
-                        <h5>Категории</h5>
-                     </div>
-                     <ul class="category-list">
-                        <li>
-                           <a href="#" class="category-item category-item__mobile" data-category="mobile">Телефоны и аксессуары</a>
-                        </li>
-                        <li>
-                           <a href="#" class="category-item category-item__pc" data-category="pc">Компьютеры и оргтехника</a>
-                        </li>
-                        <li>
-                           <a href="#" class="category-item category-item__electron" data-category="electron">Электроника</a>
-                        </li>
-                        <li>
-                           <a href="#" class="category-item category-item__home" data-category="home">Бытовая Техника</a>
-                        </li>
-                        <li>
-                           <a href="#" class="category-item category-item__sport" data-category="sport">Спорт и развлечения</a>
-                        </li>
-                     </ul>
+            <div id="cards-wrapper">
+               <!-- КАРТОЧКИ ТОВАРОВ -->
+               <!-- <div class="card-wrapper col-12 col-md-6 col-lg-4 col-xl-3 pb-3">
+                  <div class="card">
+                   <div class="card-img-wrapper">
+                       <img class="card-img-top" src="img/temp.png" alt="">
+                       <button class="card-add-wishlist"></button>
+                   </div>
+                   <div class="card-body justify-content-between">
+                       <a href="#" class="card-title">Имя товара</a>
+                       <div class="card-price">100000 ₽</div>
+                       <div>
+                           <button class="card-add-basket">Добавить в корзину</button>
+                       </div>
+                   </div>
                   </div>
-               </div>
-               <div class="col-12 col-sm-6 col-md-9 col-xl-10">
-                  <div class="container">
-                     <div id="cards-wrapper" class="row no-gutters justify-content-center">
-                        <!-- КАРТОЧКИ ТОВАРОВ -->
-                        <!-- <div class="card-wrapper col-12 col-md-6 col-lg-4 col-xl-3 pb-3">
-                           <div class="card">
-                           	<div class="card-img-wrapper">
-                           		<img class="card-img-top" src="img/temp.png" alt="">
-                           		<button class="card-add-wishlist"></button>
-                           	</div>
-                           	<div class="card-body justify-content-between">
-                           		<a href="#" class="card-title">Имя товара</a>
-                           		<div class="card-price">100000 ₽</div>
-                           		<div>
-                           			<button class="card-add-basket">Добавить в корзину</button>
-                           		</div>
-                           	</div>
-                           </div>
-                           </div> -->
-                        <!-- END КАРТОЧКИ ТОВАРОВ -->
-                     </div>
-                  </div>
-               </div>
+                  </div> -->
+               <!-- END КАРТОЧКИ ТОВАРОВ -->
             </div>
          </div>
       </main>
@@ -109,7 +91,7 @@
          <div class="basket-body">
             <div class="basket-head">
                <div class="basket-title">Корзина</div>
-               <div class="basket-total">Общая сумма: <span>0</span> руб</div>
+               <div class="basket-total">Итого: <span>0</span> ₽</div>
             </div>
             <div id="basket-wrapper">
                <!-- <div id="basket-empty">
