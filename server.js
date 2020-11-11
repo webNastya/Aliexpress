@@ -17,14 +17,17 @@ mongoClient.connect((err, client)=> {
         const db = client.db("Aliexpress");
         const collection = db.collection("cards");
         let cards = Array();
-        collection.find({}).limit(20).forEach((card)=>{
-            cards.push(card);
-        }).then(()=>{
-            const compiledFunction = pug.compileFile('./view/index.pug');
-            res.send(compiledFunction({
-                cards: JSON.stringify(cards)
-            }));
-        });
+        collection
+            .find({})
+            .limit(20)
+            .forEach((card)=>{
+                cards.push(card);
+            }).then(()=>{
+                const compiledFunction = pug.compileFile('./view/index.pug');
+                res.send(compiledFunction({
+                    cards: JSON.stringify(cards)
+                }));
+            });
     });
     app.listen(PORT, () => {
         console.log(``);

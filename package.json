@@ -1,26 +1,26 @@
 {
-  "name": "aliexpress",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "nodemon server.js"
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/webNastya/Aliexpress/issues"
   },
+  "dependencies": {
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "mongodb": "^3.6.3",
+    "nodemon": "^2.0.6",
+    "pug": "^3.0.0"
+  },
+  "description": "",
+  "homepage": "https://github.com/webNastya/Aliexpress#readme",
+  "license": "ISC",
+  "main": "index.js",
+  "name": "aliexpress",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/webNastya/Aliexpress.git"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/webNastya/Aliexpress/issues"
+  "scripts": {
+    "dev": "nodemon server.js"
   },
-  "homepage": "https://github.com/webNastya/Aliexpress#readme",
-  "dependencies": {
-    "express": "^4.17.1",
-    "fs": "0.0.1-security",
-    "nano": "^8.2.3",
-    "nodemon": "^2.0.6",
-    "pug": "^3.0.0"
-  }
+  "version": "1.0.0"
 }

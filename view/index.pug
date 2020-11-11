@@ -23,50 +23,40 @@ head
     link(rel='stylesheet' href='src/scss/style.css')
     title AliJSpress
 header
-    nav
+    .header-main
         .container
-            .row.justify-content-between.align-items-center
-                a.logo(href='index.html')
+            .container-mini
+                a.logo(href='#')
                 form#search
                     .search-wrapper
-                        input#searchGoods.search-wrapper_input(type='text' role='search' placeholder='Введите название...')
+                        input#searchGoods.search-wrapper_input(type='text' role='search' placeholder='Поиск')
                     div
-                        button#search-clear &#x274C;
+                        button#search-clear
                     .search-wrap-btn
                         button#search-btn.search-btn(type='submit' aria-label='Поиск товаров')
+            .container-mini
                 a#basket-main-btn.nav-elements(href='#')
                     span.counter 0
                 a#favorites-btn.nav-elements(href='#')
                     span.counter 0
+    .header-categoty
+        #category.container
+            a.category-item(href='#' data-category='mobile') Телефоны и аксессуары
+            a.category-item(href='#' data-category='pc') Компьютеры и оргтехника
+            a.category-item(href='#' data-category='electron') Электроника
+            a.category-item(href='#' data-category='home') Бытовая Техника
+            a.category-item(href='#' data-category='sport') Спорт и развлечения
 main
     .container
-        .row.justify-content-center.justify-content-sm-between
-            .col-6.col-sm-4.col-md-3.col-xl-2
-                #category
-                    .category-title
-                        h5 Категории
-                    ul.category-list
-                        li
-                            a.category-item.category-item__mobile(href='#' data-category='mobile') Телефоны и аксессуары
-                        li
-                            a.category-item.category-item__pc(href='#' data-category='pc') Компьютеры и оргтехника
-                        li
-                            a.category-item.category-item__electron(href='#' data-category='electron') Электроника
-                        li
-                            a.category-item.category-item__home(href='#' data-category='home') Бытовая Техника
-                        li
-                            a.category-item.category-item__sport(href='#' data-category='sport') Спорт и развлечения
-            .col-12.col-sm-6.col-md-9.col-xl-10
-                .container
-                    #cards-wrapper.row.no-gutters.justify-content-center
+        #cards-wrapper
 #basket
     .basket-body
         .basket-head
             .basket-title Корзина
             .basket-total
-                | Общая сумма:
+                | Итого:
                 span 0
-                |  руб
+                | ₽
         #basket-wrapper
         button.btn.btn-primary.basket-confirm Оформить заказ
         #basket-close
