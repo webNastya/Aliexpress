@@ -26,7 +26,7 @@ header
     .header-main
         .container
             .container-mini
-                a.logo(href='#')
+                .logo
                 form#search
                     .search-wrapper
                         input#searchGoods.search-wrapper_input(type='text' role='search' placeholder='Поиск')
@@ -38,7 +38,7 @@ header
                 a#basket-main-btn.nav-elements(href='#')
                     span.counter 0
                 a#favorites-btn.nav-elements(href='#')
-                    span.counter 0
+                    span.counter !{favoritesCnt}
     .header-categoty
         #category.container
             a.category-item(href='#' data-category='mobile') Телефоны и аксессуары
@@ -49,6 +49,7 @@ header
 main
     .container
         #cards-wrapper
+            include catalog.pug
 #basket
     .basket-body
         .basket-head
@@ -60,6 +61,4 @@ main
         #basket-wrapper
         button.btn.btn-primary.basket-confirm Оформить заказ
         #basket-close
-script.
-    let cardsData = !{cards};
-script(src='src/script/scriptmain.js')
+script(src='src/script/script.js')

@@ -1,0 +1,13 @@
+p
+    a(href='#') Категория
+    |  > Какой-то товар
+.each-good-content
+    img.each-good-img(src=card.img alt='')
+    .each-good-description
+        h1.each-good-title Main title
+        p.each-good-title !{card.title}
+        p.each-good-price
+            | !{card.price.toFixed(2).toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽ 
+            button.like-each-card(class=card.inFavorites ? "active" : "" data-id=card.id)
+        .calc
+            button.add-card(data-goods-id=card.id) Добавить товар
