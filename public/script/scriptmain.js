@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
 									<button class="add-favorite"
 										data-id="${id}"></button>
 								</div>
-								<div class="card-body justify-content-between">
+								<div class="card-body">
 									<a href="#" class="card-title" data-each-id="${id}">${title}</a>
 									<div class="card-price">${space(price)} ₽</div>
 								</div>`,

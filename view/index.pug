@@ -23,8 +23,7 @@ head
     link(rel='stylesheet' href='src/scss/style.css')
     title AliJSpress
 header
-    .header-main
-        .container
+        .container.header-main
             .container-mini
                 a.logo(href='#')
                 form#search
@@ -39,15 +38,16 @@ header
                     span.counter 0
                 a#favorites-btn.nav-elements(href='#')
                     span.counter 0
-    .header-categoty
-        #category.container
+
+main
+    .container
+        #category
+            .category-title Категории
             a.category-item(href='#' data-category='mobile') Телефоны и аксессуары
             a.category-item(href='#' data-category='pc') Компьютеры и оргтехника
             a.category-item(href='#' data-category='electron') Электроника
             a.category-item(href='#' data-category='home') Бытовая Техника
             a.category-item(href='#' data-category='sport') Спорт и развлечения
-main
-    .container
         #cards-wrapper
 #basket
     .basket-body
