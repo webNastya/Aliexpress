@@ -1,0 +1,16 @@
+header
+    .container.header-main
+        .container-mini
+            .logo
+            form#search
+                .search-wrapper
+                    input#searchGoods.search-wrapper_input(type='text' role='search' placeholder='Поиск')
+                div
+                    button#search-clear
+                .search-wrap-btn
+                    button#search-btn.search-btn(type='submit' aria-label='Поиск товаров')
+        .container-mini
+            a#basket-main-btn.nav-elements(href='#')
+                span.counter 0
+            a#favorites-btn.nav-elements(href='#')
+                span.counter !{favoritesCnt}
