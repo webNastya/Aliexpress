@@ -3,13 +3,16 @@ document.addEventListener('DOMContentLoaded', () => {
 		constructor(){}
 		showCards(){
 			this.show("/",{});
+			window.history.pushState({}, "index", "/");
 		}
 		openCard(id){
 			this.show("/card",{"id": id});
+			window.history.pushState({id: id}, "card", "/card?id=" + id);
 		}
 
 		showCategory(category){
 			this.show("/category",{"category": category});
+			window.history.pushState({category: category}, "category", "/category?cat=" + category);
 		}
 
 		show(url, body){
@@ -46,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	class Favorites{
 		showFavorites(){
 			catalog.show("/favorites", {});
+			window.history.pushState({}, "favorites", "/favorites");
 		}
 
 		addFavorite(elem){

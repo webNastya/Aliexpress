@@ -4,5 +4,5 @@ each card in cards
             img.card-img-top(data-each-id=card.id src=card.img alt='')
             button.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
         .card-body.justify-content-between
-            a.card-title(href='#' data-each-id=card.id) !{card.title}
+            .card-title(data-each-id=card.id) !{card.title}
             .card-price !{card.price.toFixed(2).toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
