@@ -257,16 +257,14 @@ button:focus{outline:transparent}
 	text-align: center;
 }
 
-.add-favorite{width:32px;height:32px;background-image:url(../img/icons.png);background-position:4px -2588px;border-radius:50%;text-align:center;line-height:32px;position:absolute;right:8px;bottom:8px;opacity:0;box-shadow:0 4px 8px 0 rgba(0,0,0,.08);border:none}
+.add-favorite{width:32px;height:32px;background-color:transparent;background-image:url(../img/fav-static.svg);background-repeat:no-repeat;position:absolute;top:7px;right:0px;border:none}
 
 .add-favorite:hover{
-	background-color:#f90;background-position:4px -2588px}
+	background-image: url(../img/fav-hover.svg)}
 
 .add-favorite.active{
-	opacity:1;
-	background-position:4px -2632px}
+	background-image: url("../img/fav-active.svg")}
 
-.add-favorite.active:hover{background-color:#ccc}
 
 .card-store{text-decoration:underline;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;cursor:pointer;font-size:12px;line-height:16px;color:#999}
 
@@ -408,7 +406,7 @@ button:focus{outline:transparent}
 .each-good-img{margin-right: 20px;max-width: 45%}
 
 .like-each-card{min-width:32px;height:32px;background-color:transparent;background-image:url(../img/favourite.svg);border:none;margin-left: 30px;background-size: contain}
-.like-each-card.active{opacity:1;background-position:4px -2632px}
+.like-each-card.active{opacity:1;}
 .each-good-description{max-width: 600px;}
 .each-good-title{font-size: 24px;}
 
