@@ -67,7 +67,8 @@ mongoClient.connect((err, client)=> {
                 const compiledFunction = pug.compileFile('./view/index.pug');
                 res.send(compiledFunction({
                     cards: cards,
-                    favoritesCnt: favoritesCnt
+                    favoritesCnt: favoritesCnt,
+                    layout: "catalog"
                 }));
             });
         });
@@ -101,6 +102,30 @@ mongoClient.connect((err, client)=> {
                 })
             });
     });
+
+    app.get('/card', (req, res) => {
+        if (err)
+            console.log(err);
+
+        const profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});
+        const cardsCursor = db.collection("cards").findOne({id: req.query.id});
+        let favoritesCnt = 0;
+
+        cardsCursor.then((card)=>{
+            profileCursor.then(profile => {
+                if (profile != null) {
+                    favoritesCnt = profile.favorites.length;
+                    card.inFavorites = profile.favorites.includes(card.id);
+                }
+                const compiledFunction = pug.compileFile('./view/index.pug');
+                res.send(compiledFunction({
+                    card: card,
+                    favoritesCnt: favoritesCnt,
+                    layout: "card"
+                }));
+            });
+        });
+    });
     app.post('/card', (req, res) => {
         if (err)
             console.log(err);
@@ -112,10 +137,43 @@ mongoClient.connect((err, client)=> {
             profileCursor.then(profile => {
                 if (profile != null)
                     card.inFavorites = profile.favorites.includes(card.id);
-                console.log(card)
                 const compiledFunction = pug.compileFile('./view/card.pug');
                 res.send(compiledFunction({
                     card: card
+                }));
+            });
+        });
+    });
+    app.get('/category', (req, res) => {
+        if (err)
+            console.log(err);
+
+        let category = req.query.cat;
+        const profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});
+        const cardsCursor = db.collection("cards").find({category: category}).limit(20);
+        let cards = Array();
+        let favoritesCnt = 0;
+
+        cardsCursor
+            .forEach((card)=>{
+                cards.push(card);
+            }).then(()=>{
+            profileCursor.then(profile => {
+                if (profile != null) {
+                    favoritesCnt = profile.favorites.length;
+                    profile.favorites.forEach(id => {
+                        for (let i = 0; i < cards.length; i++) {
+                            if (cards[i].id === id) {
+                                cards[i].inFavorites = true;
+                            }
+                        }
+                    })
+                }
+                const compiledFunction = pug.compileFile('./view/index.pug');
+                res.send(compiledFunction({
+                    cards: cards,
+                    favoritesCnt: favoritesCnt,
+                    layout: "catalog"
                 }));
             });
         });
@@ -148,6 +206,42 @@ mongoClient.connect((err, client)=> {
                 }));
             });
         });
+    });
+    app.get('/favorites', (req, res) => {
+        if (err)
+            console.log(err)
+
+        let cards = Array();
+        let favoritesCnt = 0;
+
+        db.collection("profiles").aggregate(
+            [
+                {$match: {_id: ObjectId(req.session.token)}},
+                {
+                    $lookup:
+                        {
+                            from: "cards",
+                            localField: "favorites",
+                            foreignField: "id",
+                            as: "favoritesCards"
+                        }
+                }
+            ]
+        ).limit(20).toArray().then(data=>{
+            data.forEach(profile=>{
+                favoritesCnt = profile.favorites.length;
+                profile.favoritesCards.forEach((card)=>{
+                    card.inFavorites = true;
+                    cards.push(card);
+                });
+            })
+            const compiledFunction = pug.compileFile('./view/index.pug');
+            res.send(compiledFunction({
+                cards: cards,
+                favoritesCnt: favoritesCnt,
+                layout: "catalog"
+            }));
+        })
     });
     app.post('/favorites', (req, res) => {
         if (err)

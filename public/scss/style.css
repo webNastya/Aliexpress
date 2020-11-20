@@ -188,11 +188,13 @@ button:focus{outline:transparent}
 #category{display:flex;flex-direction:column;padding-top:10px;padding-right: 20px}
 
 #favorites-btn{
-	background-image:url(../img/favourite.svg);background-size: contain}
+	background-image:url(../img/favourite.svg);background-size: contain;
+	cursor: pointer;}
 
 
 #basket-main-btn{
-	background-image:url(../img/cart-alt1.svg);background-size: contain}
+	background-image:url(../img/cart-alt1.svg);background-size: contain;
+	cursor: pointer;}
 
 .category-title{
 	display:block;
@@ -200,7 +202,8 @@ button:focus{outline:transparent}
 
 .category-item{
 	height:30px;color:black;font-size:14px;
-	text-overflow:ellipsis;white-space:nowrap}
+	text-overflow:ellipsis;white-space:nowrap;
+	cursor: pointer;}
 
 .category-item:hover{color:#FF4747;text-decoration:none}
 
@@ -236,7 +239,8 @@ button:focus{outline:transparent}
 .card-title{
 	overflow:hidden;color:#333;font-size:12px;line-height:1.38;
 	padding-bottom:6px;position:relative;z-index:4;white-space:nowrap;
-	text-overflow:ellipsis;margin-bottom:0}
+	text-overflow:ellipsis;margin-bottom:0;
+	cursor: pointer;}
 
 .card-title:hover{text-decoration:underline;cursor:pointer;color:#FF4747}
 
