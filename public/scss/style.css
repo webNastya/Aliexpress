@@ -401,12 +401,13 @@ button:focus{outline:transparent}
 
 .search.error{-webkit-animation:2s linear error;-o-animation:2s linear error;animation:2s linear error}
 
-.each-good-content{display: -webkit-flex;display: -moz-flex;display: -ms-flex;display: -o-flex;display: flex;-webkit-flex-direction: row;-moz-flex-direction: row;-ms-flex-direction: row;-o-flex-direction: row;flex-direction: row;}
+.card-content{display: -webkit-flex;display: -moz-flex;display: -ms-flex;display: -o-flex;display: flex;}
 .each-good p a{color: #FF4747}
 .each-good-img{margin-right: 20px;max-width: 45%}
 
 .like-each-card{min-width:32px;height:32px;background-color:transparent;background-image:url(../img/favourite.svg);border:none;margin-left: 30px;background-size: contain}
-.like-each-card.active{opacity:1;}
+.like-each-card:hover{min-width:35px;background-image:url(../img/fav-hover.svg);background-size: cover}
+.like-each-card.active{min-width:35px;background-image:url(../img/fav-active.svg)}
 .each-good-description{max-width: 600px;}
 .each-good-title{font-size: 24px;}
 
