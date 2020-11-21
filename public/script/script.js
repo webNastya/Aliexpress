@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+	const space = arg => {
+		arg.toFixed(2);
+		arg = arg.toString();
+		return arg.replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ');
+	}
 	class Catalog{
 		constructor(){}
 		showCards(){
@@ -39,6 +44,15 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 			else if(target.classList.contains('basket-delete')) {
 				basket.deleteBasket(target);
+			}
+			else if(target.classList.contains('add-each-card')) {
+				basket.addOneToBasket(target);
+			}
+			else if(target.classList.contains('delete-each-card')) {
+				if(document.querySelector('.calc-content[data-id="'+target.dataset.id+'"]').textContent <= 1)
+					basket.deleteBasket(target);
+				else
+					basket.deleteOneInBasket(target);
 			}
 			else if (target.classList.contains('card-title') ||
 				target.classList.contains('card-img-top')) {
@@ -124,8 +138,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			xhttp.setRequestHeader("Content-Type", "application/json");
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
-					if (this.responseText == "true")
-						document.querySelector('#basket-main-btn span').textContent--
+					if (this.responseText == "true") {
+						let cnt = document.querySelector('#basket-main-btn span')
+						cnt.textContent = cnt.textContent<=0 ? 0 : --cnt.textContent
+					}
+					// Заглушка
+					basket.showBasket();
 				}
 			};
 			xhttp.send(JSON.stringify({
@@ -134,8 +152,57 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 			}));
 
-			// Заглушка
-			basket.showBasket();
+		}
+		addOneToBasket(elem){
+			let id = elem.dataset.id;
+
+			var xhttp = new XMLHttpRequest();
+			xhttp.open("POST", "/basket/add/one", true);
+			xhttp.setRequestHeader("Content-Type", "application/json");
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					if (this.responseText == "true") {
+						let price = document.querySelector('.basket-body[data-id="' + id + '"] ' +
+							'.basket-btns p.basket-price').dataset.price;
+						let total = document.querySelector('.total-int')
+						let _total = +total.dataset.total + +price
+						total.textContent = space(_total);
+						total.dataset.total = _total;
+					}
+				}
+			};
+			xhttp.send(JSON.stringify({
+				"card" : {
+					"id": id
+				}
+			}));
+
+		}
+		deleteOneInBasket(elem){
+			let id = elem.dataset.id;
+
+			var xhttp = new XMLHttpRequest();
+			xhttp.open("POST", "/basket/delete/one", true);
+			xhttp.setRequestHeader("Content-Type", "application/json");
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					if (this.responseText == "true") {
+						let price = document.querySelector('.basket-body[data-id="' + id + '"] ' +
+							'.basket-btns p.basket-price').dataset.price;
+						let total = document.querySelector('.total-int')
+						let _total = +total.dataset.total - +price
+						total.textContent = space(_total);
+						total.dataset.total = _total;
+						document.querySelector('.calc-content[data-id="' + id + '"]').textContent--
+					}
+				}
+			};
+			xhttp.send(JSON.stringify({
+				"card" : {
+					"id": id
+				}
+			}));
+
 		}
 
 		handlers(event){

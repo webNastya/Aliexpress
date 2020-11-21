@@ -12,5 +12,11 @@ router.post('/add', (req, res) => {
 router.post('/delete', (req, res) => {
     require('../controllers/basket').deleteBasket(req, res);
 });
+router.post('/add/one', (req, res) => {
+    require('../controllers/basket').addOneToBasket(req, res);
+});
+router.post('/delete/one', (req, res) => {
+    require('../controllers/basket').deleteOneInBasket(req, res);
+});
 
 module.exports = router;
