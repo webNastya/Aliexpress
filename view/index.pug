@@ -7,5 +7,15 @@ main
         #category
             include category.pug
         #cards-wrapper
-            include cards-wrapper.pug
+            .basket Корзина
+            include basket.pug
+        .basket-total
+            .total-container
+                .quantity
+                    span Товары
+                    span 20 шт
+                .price
+                    span Итого
+                    span 200 ₽
+                button.go-pay Перейти к оформлению
 script(src='src/script/script.js')
