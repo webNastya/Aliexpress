@@ -21,7 +21,6 @@ button:focus{outline:transparent}
 	position:relative;
 	box-sizing:border-box;
 	padding:2px 15px;
-	font-family:GTEestiProText,Arial,sans-serif;
 	font-size:14px;
 	text-align:center;
 	text-decoration:none;
@@ -84,7 +83,6 @@ button:focus{outline:transparent}
 	padding:0 0 0 8px;
 	border:1px solid transparent;
 	font-size:14px;
-	font-family:GTEestiProText,Arial,sans-serif;
 	color:#001a34;
 	background-color: #E9D5AE;
 	line-height:18px;
@@ -159,11 +157,9 @@ button:focus{outline:transparent}
 	height:16px;
 	border-radius:8px;
 	padding:0 8px;
-	/*background-color:#FF4747;*/
 	color:#fff;
 	font-size:14px;
 	line-height:16px;
-	font-family:GTEestiProDisplay,Arial,sans-serif;
 	font-weight:700}
 
 .nav-elements .icon{
@@ -182,7 +178,6 @@ button:focus{outline:transparent}
 
 .nav-elements .desc{
 	color:#001a34;
-	font-family:GTEestiProDisplay,Arial,sans-serif;
 	font-size:14px;
 	line-height:18px}
 #category{display:flex;flex-direction:column;padding-top:10px;padding-right: 20px}
@@ -260,7 +255,7 @@ button:focus{outline:transparent}
 .delete-each-card{background: #FF4747;}
 .add-each-card, .delete-each-card{width:40px;height: 30px;color:#fff;border-color:transparent}
 .add-card{width: 200px;height: 40px;color:#fff;background:#269926;border-color:transparent}
-.add-card:hover{width: 202px;height: 42px}
+.add-card:disabled{background:darkred}
 .add-card-active{color: #269926;background-color: #fff;border: 2px solid #269926;}
 .calc-content{
 	margin:0 10px;
@@ -320,7 +315,7 @@ button:focus{outline:transparent}
 	border:none}
 #basket-fav{position:static}
 .basket .goods-count{display:flex;justify-content:center}
-.basket-total{width: 300px;height: 200px;margin-top: 60px; border: 1px solid #d6dbe0;}
+.basket-total{width: 300px;height: 200px;margin: 60px 0 0 40px; border: 1px solid #d6dbe0;}
 .total-container{padding: 30px}
 .quantity, .price{display: flex;justify-content: space-between;}
 .price{padding-top: 5px;font-weight: 600;}
@@ -345,7 +340,7 @@ button:focus{outline:transparent}
 .each-good-description{max-width: 600px;}
 .each-good-title{font-size: 22px;}
 
-.each-good-price{font-size: 28px;}
+.each-good-price{font-size: 28px;font-weight: 500}
 
 .calc{display: -webkit-flex;display: -moz-flex;display: -ms-flex;display: -o-flex;display: flex;-webkit-flex-direction: row;-moz-flex-direction: row;-ms-flex-direction: row;-o-flex-direction: row;flex-direction: row;margin-bottom: 30px;}
 @media (min-width: 1300px){

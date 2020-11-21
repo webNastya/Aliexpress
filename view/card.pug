@@ -11,4 +11,5 @@
                 | !{card.price.toFixed(2).toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
                 button.like-each-card(class=card.inFavorites ? "active" : "" data-id=card.id)
             .calc
-                button.add-card(data-goods-id=card.id) Добавить товар
+                - let attributes = card.inBasket ? {disabled: "true"} : {};
+                button.add-card(data-id=card.id)&attributes(attributes) Добавить товар

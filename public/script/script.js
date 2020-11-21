@@ -34,9 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
 				target.classList.contains('like-each-card')) {
 				favorites.addFavorite(target);
 			}
-			// else if (target.classList.contains('add-each-card')) {
-			// 	basket.addBasket(target.dataset.goodsId);
-			// }
+			else if(target.classList.contains('add-card')) {
+				basket.addBasket(target);
+			}
+			else if(target.classList.contains('basket-delete')) {
+				basket.deleteBasket(target);
+			}
 			else if (target.classList.contains('card-title') ||
 				target.classList.contains('card-img-top')) {
 				catalog.openCard(target.dataset.eachId);
@@ -86,20 +89,74 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 
 	}
+	class Basket{
+		showBasket(){
+			catalog.show("/basket", {});
+			window.history.pushState({}, "favorites", "/basket");
+		}
+
+		addBasket(elem){
+			let id = elem.dataset.id;
+
+			var xhttp = new XMLHttpRequest();
+			xhttp.open("POST", "/basket/add", true);
+			xhttp.setRequestHeader("Content-Type", "application/json");
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					if (this.responseText == "true")
+						document.querySelector('#basket-main-btn span').textContent++
+					// Заглушка
+					catalog.openCard(id);
+				}
+			};
+			xhttp.send(JSON.stringify({
+				"card" : {
+					"id": id
+				}
+			}));
+
+		}
+		deleteBasket(elem){
+			let id = elem.dataset.id;
+
+			var xhttp = new XMLHttpRequest();
+			xhttp.open("POST", "/basket/delete", true);
+			xhttp.setRequestHeader("Content-Type", "application/json");
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					if (this.responseText == "true")
+						document.querySelector('#basket-main-btn span').textContent--
+				}
+			};
+			xhttp.send(JSON.stringify({
+				"card" : {
+					"id": id
+				}
+			}));
+
+			// Заглушка
+			basket.showBasket();
+		}
+
+		handlers(event){
+			let target = event.target;
+			if(target.id == 'basket-main-btn') {
+				basket.showBasket()
+			}
+		}
+
+	}
 
 	catalog = new Catalog();
 	favorites = new Favorites();
+	basket = new Basket();
 
 	document.querySelector('#cards-wrapper').addEventListener('click', catalog.handlers);
-
-	// document.querySelector('#basket-main-btn').addEventListener('click', basket.handlers);
-	// document.querySelector('#basket').addEventListener('click', basket.handlers);
 
 	document.querySelector('#category').addEventListener('click', catalog.handlers);
 
 	document.querySelector('#favorites-btn').addEventListener('click', favorites.handlers);
-
-	// document.querySelector('#search').addEventListener('submit', search.handler);
+	document.querySelector('#basket-main-btn').addEventListener('click', basket.handlers);
 
 	document.querySelector('.logo').addEventListener('click', () => {
 		catalog.showCards();

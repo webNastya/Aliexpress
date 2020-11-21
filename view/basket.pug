@@ -1,14 +1,25 @@
-each card in cards
-    .basket-body
-        .basket-img
-            img.goods-img(src=card.img alt='')
-        .basket-title !{card.title}
-        .basket-btns
-            p.basket-price !{card.price.toFixed(2).toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
-            .calc
-                button.delete-each-card(data-goods-id=card.id) -
-                .calc-content 1
-                button.add-each-card(data-goods-id=card.id) +
-            .basket-trigger
-                button.basket-delete(data-goods-id=card.id)
-                button#basket-fav.add-favorite(data-goods-id=card.id)
+.baskets
+    .basket Корзина
+    each card in cards
+        .basket-body
+            .basket-img
+                img.goods-img(src=card.img alt='')
+            .basket-title !{card.title}
+            .basket-btns
+                p.basket-price !{card.price.toFixed(2).toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
+                .calc
+                    button.delete-each-card(data-id=card.id) -
+                    .calc-content 1
+                    button.add-each-card(data-id=card.id) +
+                .basket-trigger
+                    button.basket-delete(data-id=card.id)
+                    button#basket-fav.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
+.basket-total
+    .total-container
+        .quantity
+            span Товары
+            span 20 шт
+        .price
+            span Итого
+            span 200 ₽
+        button.go-pay Перейти к оформлению
