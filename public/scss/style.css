@@ -1,7 +1,7 @@
 @keyframes show{0%{opacity:0}to{opacity:1}}
 @keyframes error{0%{border:3px solid #FF4747}25%{border:3px solid #0059FF}50%{border:3px solid #ff9a00}75%{border:3px solid #FF63F5}100%{border:3px solid #FF4747}}
 header{background-color: #EF870C;margin-bottom: 40px;}
-body{font-family:Open Sans,Arial,Helvetica,sans-serif;}
+body{font-family:'Montserrat', sans-serif;}
 ul{list-style:none;margin:0;padding:0}
 
 input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;-moz-appearance:none;appearance:none;margin:0}
@@ -198,10 +198,10 @@ button:focus{outline:transparent}
 
 .category-title{
 	display:block;
-	font-size:20px;line-height:13px;margin-bottom:20px;font-weight:700}
+	font-size:20px;line-height:13px;margin-bottom:20px;font-weight:500}
 
 .category-item{
-	height:30px;color:black;font-size:14px;
+	font-weight: 500;height:30px;color:black;font-size:14px;
 	text-overflow:ellipsis;white-space:nowrap;
 	cursor: pointer;}
 
@@ -237,16 +237,23 @@ button:focus{outline:transparent}
 .card:hover .card-add-basket{display:block}
 
 .card-title{
-	overflow:hidden;color:#333;font-size:12px;line-height:1.38;
-	padding-bottom:6px;position:relative;z-index:4;white-space:nowrap;
+	overflow:hidden;font-size:14px;line-height:1.38;
+	padding-bottom:5px;position:relative;z-index:4;white-space:nowrap;
 	text-overflow:ellipsis;margin-bottom:0;
 	cursor: pointer;}
 
 .card-title:hover{text-decoration:underline;cursor:pointer;color:#FF4747}
 
-.card-body{display:flex;flex-direction:column;padding:1.25rem 0 1.25rem 0}
+.card-body{display:flex;flex-direction:column;padding: 20px 0 0 0}
 
-.card-price{font-size:22px;font-weight:700;letter-spacing:.3px}
+.card-price{font-size:22px;font-weight:700;margin-bottom: 5px;letter-spacing:1px}
+.add-cat-card{width: 100px;
+	height: 30px;
+	padding-top: 2px;
+	color: #fff;
+	background: #269926;
+	text-align: center;
+	border: none;}
 
 .card-add-basket{display:none;margin:0 auto;background:#ff9a00;padding:3px 9px;min-width:165px;color:#fff;border-color:transparent;font-size:16px;}
 .add-each-card{background: #269926}
@@ -286,17 +293,17 @@ button:focus{outline:transparent}
 .basket{font-size:26px;width:100%}
 .basket-body{display: flex;padding:25px 0 25px 0;border-bottom: 1px solid #d6dbe0;}
 .basket-img img{max-width:120px}
-.basket-title{font-size:20px;width:400px;padding:0 15px 0 15px}
-.basket-price{font-size: 22px}
+.basket-title{font-size:18px;width:400px;padding:0 15px 0 15px}
+.basket-price{font-size:22px;font-weight:500;}
 .basket-wrapper{
 	display:flex;justify-content:center;
 	flex-wrap:wrap;margin:25px 0;
 	background-color:#f2f2f2;border:1px solid #4d5f713f;padding:20px}
 
-.basket-wrapper #basket-empty{font-size:24px;color:#4d5f71}
+.basket-wrapper #basket-empty{font-size:24px;font-weight:	500;color:#4d5f71}
 
 .basket-head{display:flex;justify-content:space-between;margin: 10px 0 20px 0}
-.basket-fav{    width: 32px;
+.basket-fav{width: 32px;
 	height: 32px;
 	background-image: url(../img/fav-static.svg);
 	background-repeat: no-repeat;
@@ -314,8 +321,9 @@ button:focus{outline:transparent}
 #basket-fav{position:static}
 .basket .goods-count{display:flex;justify-content:center}
 .basket-total{width: 300px;height: 200px;margin-top: 60px; border: 1px solid #d6dbe0;}
-.total-container{padding: 20px}
+.total-container{padding: 30px}
 .quantity, .price{display: flex;justify-content: space-between;}
+.price{padding-top: 5px;font-weight: 600;}
 .go-pay{width: 250px;
 	height: 40px;
 	margin-top: 20px;
@@ -335,7 +343,7 @@ button:focus{outline:transparent}
 .like-each-card:hover{min-width:35px;background-image:url(../img/fav-hover.svg);background-size: cover}
 .like-each-card.active{min-width:35px;background-image:url(../img/fav-active.svg)}
 .each-good-description{max-width: 600px;}
-.each-good-title{font-size: 24px;}
+.each-good-title{font-size: 22px;}
 
 .each-good-price{font-size: 28px;}
 
