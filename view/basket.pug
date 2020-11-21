@@ -1,14 +1,14 @@
 each card in cards
-    .goods-img-wrapper
-        img.goods-img(src=card.img alt='')
-    .goods-description
-        h2.goods-title !{card.title}
-        p.goods-price !{card.price.toFixed(2).toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
-    .goods-price-count
-        .goods-trigger
-            button.goods-add-wishlist(data-goods-id=card.id)
-            button.goods-delete(data-goods-id=card.id)
-    .calc
-        button.delete-each-card(data-goods-id=card.id) -
-        .calc-content 1
-        button.add-each-card(data-goods-id=card.id) +
+    .basket-body
+        .basket-img
+            img.goods-img(src=card.img alt='')
+        .basket-title !{card.title}
+        .basket-btns
+            p.basket-price !{card.price.toFixed(2).toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
+            .calc
+                button.delete-each-card(data-goods-id=card.id) -
+                .calc-content 1
+                button.add-each-card(data-goods-id=card.id) +
+            .basket-trigger
+                button.basket-delete(data-goods-id=card.id)
+                button#basket-fav.add-favorite(data-goods-id=card.id)
