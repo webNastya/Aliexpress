@@ -48,10 +48,12 @@ DB.connect( function( err, client ) {
     const card = require('./routers/card');
     const category = require('./routers/category');
     const favorites = require('./routers/favorites');
+    const basket = require('./routers/basket');
     app.use('/', catalog);
     app.use('/card', card);
     app.use('/category', category);
     app.use('/favorites', favorites);
+    app.use('/basket', basket);
 
     // Запуск сервера
     app.listen(PORT, () => {

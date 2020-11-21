@@ -1,8 +1,9 @@
 const db = require('../db').get();
 const ObjectId = require('mongodb').ObjectID;
 
-exports.getFavorites = (req, res, callback)=>{
+exports.getBasket = (req, res, callback)=>{
     let cards = Array();
+    let basketCnt = 0;
     let favoritesCnt = 0;
 
     db.collection("profiles").aggregate(
@@ -12,32 +13,40 @@ exports.getFavorites = (req, res, callback)=>{
                 $lookup:
                     {
                         from: "cards",
-                        localField: "favorites",
+                        localField: "basket",
                         foreignField: "id",
-                        as: "favoritesCards"
+                        as: "basketCards"
                     }
             }
         ]
     ).limit(20).toArray().then(profiles=>{
         profiles.forEach(profile=>{
-            favoritesCnt = profile.favorites.length;
             basketCnt = profile.basket.length;
-            profile.favoritesCards.forEach((card)=>{
-                card.inFavorites = true;
+            profile.basketCards.forEach((card)=>{
+                card.inBasket = true;
                 cards.push(card);
+            });
+            favoritesCnt = profile.favorites.length;
+            profile.favorites.forEach(id => {
+                for (let i = 0; i < cards.length; i++) {
+                    if (cards[i].id === id) {
+                        cards[i].inFavorites = true;
+                    }
+                }
             });
         })
         let data = {
             cards: cards,
             favoritesCnt: favoritesCnt,
             basketCnt: basketCnt,
-            layout: "catalog"
+            layout: "basket"
         }
         callback(data);
     })
 }
-exports.postFavorites = (req, res, callback)=> {
+exports.postBasket = (req, res, callback)=> {
     let cards = Array();
+
     db.collection("profiles").aggregate(
         [
             {$match: {_id: ObjectId(req.session.token)}},
@@ -45,18 +54,25 @@ exports.postFavorites = (req, res, callback)=> {
                 $lookup:
                     {
                         from: "cards",
-                        localField: "favorites",
+                        localField: "basket",
                         foreignField: "id",
-                        as: "favoritesCards"
+                        as: "basketCards"
                     }
             }
         ]
     ).limit(20).toArray().then(profiles=>{
         profiles.forEach(profile=>{
-            profile.favoritesCards.forEach((card)=>{
-                card.inFavorites = true;
+            profile.basketCards.forEach((card)=>{
+                card.inBasket = true;
                 cards.push(card);
             });
+            profile.favorites.forEach(id => {
+                for (let i = 0; i < cards.length; i++) {
+                    if (cards[i].id === id) {
+                        cards[i].inFavorites = true;
+                    }
+                }
+            })
         })
         let data = {
             cards: cards
@@ -64,23 +80,23 @@ exports.postFavorites = (req, res, callback)=> {
         callback(data);
     })
 }
-exports.addFavorites = (req, res, callback)=> {
+exports.addBasket = (req, res, callback)=> {
     const profiles = db.collection("profiles");
     profiles
         .updateOne(
             {_id: ObjectId(req.session.token)},
-            {$addToSet: {favorites: req.body.card.id}}
+            {$addToSet: {basket: req.body.card.id}}
         )
         .then(() => {
             callback();
         });
 }
-exports.deleteFavorites = (req, res, callback)=> {
+exports.deleteBasket = (req, res, callback)=> {
     const profiles = db.collection("profiles");
     profiles
         .updateOne(
             {_id: ObjectId(req.session.token)},
-            {$pull: {favorites: req.body.card.id}}
+            {$pull: {basket: req.body.card.id}}
         )
         .then(() => {
             callback();

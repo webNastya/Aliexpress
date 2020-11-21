@@ -254,6 +254,7 @@ button:focus{outline:transparent}
 .add-each-card, .delete-each-card{width:40px;height: 30px;color:#fff;border-color:transparent}
 .add-card{width: 200px;height: 40px;color:#fff;background:#269926;border-color:transparent}
 .add-card:hover{width: 202px;height: 42px}
+.add-card:disabled{background:darkred}
 .add-card-active{color: #269926;background-color: #fff;border: 2px solid #269926;}
 .calc-content{
 	margin:0 10px;

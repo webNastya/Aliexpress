@@ -4,6 +4,7 @@ const ObjectId = require('mongodb').ObjectID;
 exports.getCategory = (req, res, callback)=>{
     let cards = Array();
     let favoritesCnt = 0;
+    let basketCnt = 0;
     let category = req.query.cat;
 
     const profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});
@@ -15,6 +16,7 @@ exports.getCategory = (req, res, callback)=>{
         }).then(()=>{
         profileCursor.then(profile => {
             if (profile != null) {
+                basketCnt = profile.basket.length;
                 favoritesCnt = profile.favorites.length;
                 profile.favorites.forEach(id => {
                     for (let i = 0; i < cards.length; i++) {
@@ -27,6 +29,7 @@ exports.getCategory = (req, res, callback)=>{
             let data = {
                 cards: cards,
                 favoritesCnt: favoritesCnt,
+                basketCnt: basketCnt,
                 layout: "catalog"
             }
             callback(data);
