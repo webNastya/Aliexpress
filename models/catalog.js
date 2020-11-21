@@ -1,4 +1,4 @@
-const db = require('../mongoUtil').db();
+const db = require('../db').get();
 const ObjectId = require('mongodb').ObjectID;
 
 exports.getCatalog = (req, res, callback)=>{

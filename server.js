@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
-const mongoUtil = require( './mongoUtil' );
+const DB = require( './db' );
 const app = express();
 
 // Парсер URL
@@ -24,12 +24,12 @@ app.use(session({
 }));
 
 // Соединение с базой
-mongoUtil.connect( function( err, client ) {
+DB.connect( function( err, client ) {
     if (err) console.log(err);
 
     // Обработка сессий
     app.use((req, res, next)=>{
-        const db = require('./mongoUtil').db();
+        const db = require('./db').get();
         if(!req.session.token){
             const collectionProfile = db.collection("profiles");
             collectionProfile
@@ -55,5 +55,6 @@ mongoUtil.connect( function( err, client ) {
 
     // Запуск сервера
     app.listen(PORT, () => {
+        console.log("server started");
     });
 });

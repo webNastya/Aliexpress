@@ -5,12 +5,12 @@ let db;
 
 module.exports = {
     connect: function( callback ) {
-        MongoClient.connect( url,  { useNewUrlParser: true }, function( err, client ) {
+        MongoClient.connect( url,  {useUnifiedTopology: true, useNewUrlParser: true}, function( err, client ) {
             db = client.db('Aliexpress');
             return callback( err );
         } );
     },
-    db: function() {
+    get: function() {
         return db;
     }
 };
