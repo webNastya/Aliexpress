@@ -23,6 +23,14 @@ exports.getCatalog = (req, res, callback)=>{
                             }
                         }
                     });
+                    profile.basket.forEach((cardData)=>
+                    {
+                        for (let i = 0; i < cards.length; i++) {
+                            if (cards[i].id === cardData.id) {
+                                cards[i].inBasket = true;
+                            }
+                        }
+                    });
                 }
                 let data = {
                     cards: cards,
@@ -45,7 +53,7 @@ exports.postCatalog = (req, res, callback)=> {
             cards.push(card);
         }).then(() => {
         profileCursor.then(profile => {
-            if (profile != null)
+            if (profile != null) {
                 profile.favorites.forEach(id => {
                     for (let i = 0; i < cards.length; i++) {
                         if (cards[i].id === id) {
@@ -53,6 +61,14 @@ exports.postCatalog = (req, res, callback)=> {
                         }
                     }
                 })
+                profile.basket.forEach((cardData) => {
+                    for (let i = 0; i < cards.length; i++) {
+                        if (cards[i].id === cardData.id) {
+                            cards[i].inBasket = true;
+                        }
+                    }
+                });
+            }
             let data = {
                 cards: cards
             }

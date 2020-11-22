@@ -13,7 +13,11 @@ exports.getCard = (req, res, callback)=>{
                 favoritesCnt = profile.favorites.length;
                 basketCnt = profile.basket.length;
                 card.inFavorites = profile.favorites.includes(card.id);
-                card.inBasket = profile.basket.includes(card.id);
+                profile.basket.forEach((c)=>
+                {
+                    if(c.id === card.id)
+                        card.inBasket = true
+                })
             }
             let data = {
                 card: card,
@@ -33,7 +37,11 @@ exports.postCard = (req, res, callback)=> {
         profileCursor.then(profile => {
             if (profile != null) {
                 card.inFavorites = profile.favorites.includes(card.id);
-                card.inBasket = profile.basket.includes(card.id);
+                profile.basket.forEach((c)=>
+                {
+                    if(c.id === card.id)
+                        card.inBasket = true
+                })
             }
             let data = {
                 card: card

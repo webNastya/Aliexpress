@@ -21,4 +21,14 @@ exports.deleteBasket = function (req, res) {
         res.send("true");
     })
 }
+exports.addOneToBasket = function (req, res) {
+    Basket.addOneToBasket(req, res, ()=>{
+        res.send("true");
+    })
+}
+exports.deleteOneInBasket = function (req, res) {
+    Basket.deleteOneInBasket(req, res, ()=>{
+        res.send("true");
+    })
+}
 
