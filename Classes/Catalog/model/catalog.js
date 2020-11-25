@@ -1,7 +1,7 @@
-const db = require('../db').get();
+const db = require('../../../db').get();
 const ObjectId = require('mongodb').ObjectID;
 
-exports.getCatalog = (req, res, callback)=>{
+exports.get = (req, res, callback)=>{
     let cards = Array();
     let favoritesCnt = 0;
     let basketCnt = 0;
@@ -42,7 +42,8 @@ exports.getCatalog = (req, res, callback)=>{
             });
     });
 }
-exports.postCatalog = (req, res, callback)=> {
+exports.post = (req, res, callback)=> {
+    console.log("catalog")
     let cards = Array();
 
     const profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});

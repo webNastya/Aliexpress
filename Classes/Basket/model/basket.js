@@ -1,8 +1,8 @@
-const db = require('../db').get();
+const db = require('../../../db').get();
 const ObjectId = require('mongodb').ObjectID;
 const profiles = db.collection("profiles");
 
-exports.getBasket = (req, res, callback)=>{
+exports.get = (req, res, callback)=>{
     let cards = Array();
     let basketCnt = 0;
     let favoritesCnt = 0;
@@ -56,7 +56,7 @@ exports.getBasket = (req, res, callback)=>{
         callback(data);
     })
 }
-exports.postBasket = (req, res, callback)=> {
+exports.post = (req, res, callback)=> {
     let cards = Array();
     let basketCnt = 0;
     let basketTotal = 0;
@@ -106,7 +106,7 @@ exports.postBasket = (req, res, callback)=> {
         callback(data);
     })
 }
-exports.addBasket = (req, res, callback)=> {
+exports.add = (req, res, callback)=> {
     profiles
         .updateOne(
             {_id: ObjectId(req.session.token)},
@@ -116,7 +116,7 @@ exports.addBasket = (req, res, callback)=> {
             callback();
         });
 }
-exports.deleteBasket = (req, res, callback)=> {
+exports.delete = (req, res, callback)=> {
     profiles
         .updateOne(
             {_id: ObjectId(req.session.token)},
@@ -126,7 +126,7 @@ exports.deleteBasket = (req, res, callback)=> {
             callback();
         });
 }
-exports.addOneToBasket = (req, res, callback)=> {
+exports.addOne = (req, res, callback)=> {
     profiles
         .updateOne(
             {_id: ObjectId(req.session.token), "basket.id": req.body.card.id},
@@ -136,7 +136,7 @@ exports.addOneToBasket = (req, res, callback)=> {
             callback();
         });
 }
-exports.deleteOneInBasket = (req, res, callback)=> {
+exports.deleteOne = (req, res, callback)=> {
     profiles
         .updateOne(
             {_id: ObjectId(req.session.token), "basket.id": req.body.card.id},

@@ -208,7 +208,7 @@ button:focus{outline:transparent}
 .category-item:hover{color:#FF4747;text-decoration:none}
 
 
-#cards-wrapper{display:flex;flex-wrap:wrap}
+#content-wrapper{display:flex;flex-wrap:wrap}
 .card-wrapper{width: 220px;margin: 0 20px 40px 20px}
 
 .card-img-wrapper{
@@ -359,6 +359,6 @@ button:focus{outline:transparent}
 @media (max-width: 1299px){
 	.container {
 		max-width: 1200px}
-	#cards-wrapper{
+	#content-wrapper{
 		justify-content: center}
 }
