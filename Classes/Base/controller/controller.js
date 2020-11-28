@@ -1,7 +1,6 @@
 const compileFile = require("pug").compileFile;
 
 module.exports = (model) => {
-    console.log(model, " base controller")
     exports.get = function (req, res) {
         model.get(req, res, (data) => {
             res.send(compileFile('./view/index.pug')(data));
