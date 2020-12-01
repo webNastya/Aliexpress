@@ -3,13 +3,38 @@
         a(href='#') Категория
         |  > Какой-то товар
     .card-content
-        img.each-good-img(src=card.img alt='')
+        img.each-good-img(src=card.imgCart alt='')
         .each-good-description
-            h1.each-good-title Main title
-            p.each-good-title !{card.title}
-            p.each-good-price
-                | !{card.price.toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
-                button.like-each-card(class=card.inFavorites ? "active" : "" data-id=card.id)
+            h1.title !{card.title}
+
+            p.price
+                - let disPrice = card.price * (1 - (card.discount / 100))
+                p.discount -!{card.discount}%
+                p.discount-price !{card.price.toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
+                p.main-price !{disPrice.toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
+            p Описание:
+            p.description !{card.description}
+            p Цвета:
+            .colors
+                for color in card.colors
+                    img.color(src=color alt="")
+            p Характеристики:
+            p.characters
+                for character, title in card.characters
+                    p.title #[strong !{title}]
+                    for value, key in character
+                        .caracter !{key} : !{value}
+                    br
+            .manufacturer
+                span Производитель:
+                a(href=card.manufacturer.url) !{card.manufacturer.title}
+            - moment.locale('ru');
+            - let delivery = moment().add(card.delivery, 'days').format("ddd, Do MMM")
+            - delivery = delivery.charAt(0).toUpperCase() + delivery.slice(1);
+            p.delivery Доставка: #{delivery}
+            p.sales Продано: !{card.sales} шт.
+
             .calc
                 - let attributes = card.inBasket ? {disabled: "true"} : {};
                 button.add-card(data-id=card.id)&attributes(attributes) Добавить товар
+                button.like-each-card(class=card.inFavorites ? "active" : "" data-id=card.id)
