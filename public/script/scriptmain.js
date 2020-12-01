@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		class Cards{
 			constructor(cards){
 				this.cards = cards ? cards : {};
-				this.wrapper = document.querySelector('#cards-wrapper');
+				this.wrapper = document.querySelector('#content-wrapper');
 			}
 			get(id){
 				return this.cards[id]
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		}
 		class Card{
-			static element = document.querySelector('#cards-wrapper');
+			static element = document.querySelector('#content-wrapper');
 
 			constructor(id, category, price, title, img){
 				this.id = id;

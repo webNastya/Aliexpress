@@ -11,7 +11,6 @@ app.use(bodyParser.json());
 
 // Доступ к файлам стилей, шрифтов и т.п.
 app.use('/src', express.static('public'));
-
 const PORT = process.env.PORT || 3001;
 
 // Настройка сессий
@@ -44,11 +43,11 @@ DB.connect( function( err, client ) {
         next()
     })
     // Роутинг страниц
-    const catalog = require('./routers/catalog');
-    const card = require('./routers/card');
-    const category = require('./routers/category');
-    const favorites = require('./routers/favorites');
-    const basket = require('./routers/basket');
+    const basket = require('./Classes/Basket/router/basket');
+    const catalog = require('./Classes/Catalog/router/catalog');
+    const card = require('./Classes/Card/router/card');
+    const category = require('./Classes/Category/router/category');
+    const favorites = require('./Classes/Favorites/router/favorites');
     app.use('/', catalog);
     app.use('/card', card);
     app.use('/category', category);

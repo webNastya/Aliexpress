@@ -1,7 +1,7 @@
-const db = require('../db').get();
+const db = require('../../../db').get();
 const ObjectId = require('mongodb').ObjectID;
 
-exports.getFavorites = (req, res, callback)=>{
+exports.get = (req, res, callback)=>{
     let cards = Array();
     let favoritesCnt = 0;
 
@@ -36,7 +36,7 @@ exports.getFavorites = (req, res, callback)=>{
         callback(data);
     })
 }
-exports.postFavorites = (req, res, callback)=> {
+exports.post = (req, res, callback)=> {
     let cards = Array();
     db.collection("profiles").aggregate(
         [
@@ -64,7 +64,7 @@ exports.postFavorites = (req, res, callback)=> {
         callback(data);
     })
 }
-exports.addFavorites = (req, res, callback)=> {
+exports.add = (req, res, callback)=> {
     const profiles = db.collection("profiles");
     profiles
         .updateOne(
@@ -75,7 +75,7 @@ exports.addFavorites = (req, res, callback)=> {
             callback();
         });
 }
-exports.deleteFavorites = (req, res, callback)=> {
+exports.delete = (req, res, callback)=> {
     const profiles = db.collection("profiles");
     profiles
         .updateOne(

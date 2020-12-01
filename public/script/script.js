@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			xhttp.setRequestHeader("Content-Type", "application/json");
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
-					document.querySelector('#cards-wrapper').innerHTML = this.responseText;
+					document.querySelector('#content-wrapper').innerHTML = this.responseText;
 				}
 			};
 			xhttp.send(JSON.stringify(body));
@@ -190,6 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						let _total = +total.dataset.total + +price
 						total.textContent = space(_total);
 						total.dataset.total = _total;
+						document.querySelector('.calc-content[data-id="' + id + '"]').textContent++
 					}
 				}
 			};
@@ -240,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	favorites = new Favorites();
 	basket = new Basket();
 
-	document.querySelector('#cards-wrapper').addEventListener('click', catalog.handlers);
+	document.querySelector('#content-wrapper').addEventListener('click', catalog.handlers);
 
 	document.querySelector('#category').addEventListener('click', catalog.handlers);
 

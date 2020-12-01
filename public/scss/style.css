@@ -88,8 +88,8 @@ button:focus{outline:transparent}
 .category-item:hover{color:#FF4747;text-decoration:none}
 
 
-#cards-wrapper{display:flex;flex-wrap:wrap}
-.card-wrapper{width:220px;margin:0 20px 40px 20px}
+#content-wrapper{display:flex;flex-wrap:wrap}
+.card-wrapper{width: 220px;margin: 0 20px 40px 20px}
 
 .card-img-wrapper{position:relative;
 	background-color:#e5e6eb;background-image:url(../img/temp.png);
