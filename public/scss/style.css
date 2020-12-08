@@ -206,7 +206,7 @@ button:focus{outline:transparent}
 .each-good-description{max-width: 600px;}
 .each-good-title{font-size: 22px;}
 
-.colors > img {display: inline-block; width: 75px; height: 150px; cursor: pointer; margin-right: 20px}
+.colors > img {display: inline-block; height: 150px; width: auto; max-width: 300px; max-height: 300px; cursor: pointer; margin-right: 20px}
 
 .main-price{font-size: 28px;}
 .discount-price{text-decoration: line-through}

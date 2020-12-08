@@ -3,7 +3,6 @@ exports.Router = (router, controller) => {
         controller.get(req, res);
     });
     router.post('/', (req, res) => {
-        console.log(controller, "controller in base router")
         controller.post(req, res);
     });
     return router;
