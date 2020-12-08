@@ -5,6 +5,9 @@ const FileStore = require('session-file-store')(session);
 const DB = require( './db' );
 const app = express();
 
+// Модуль для текущей даты
+app.locals.moment = require('moment');
+
 // Парсер URL
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
