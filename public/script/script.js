@@ -73,8 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
 					basket.deleteOneInBasket(target);
 			}
 			else if (target.classList.contains('card-title') ||
-				target.classList.contains('card-img-top')) {
-				catalog.openCard(target.dataset.eachId);
+				target.classList.contains('card-img-top') ||
+				target.classList.contains('color')) {
+				catalog.openCard(target.dataset.id);
 			}
 			else if(target.classList.contains('category-item')) {
 				catalog.showCategory(target.dataset.category);
