@@ -14,7 +14,7 @@ exports.post = (req, res) => {
 }
 exports.delete = (req, res) => {
     model.delete(req, res, ()=>{
-        res.send("false");
+        res.send("true");
     })
 }
 exports.add = (req, res) => {

@@ -7,10 +7,7 @@ module.exports = (model) => {
         })
     }
     exports.post = function (req, res, path) {
-        console.log(model, " model in post base controller")
         model.post(req, res, (data) => {
-            console.log(path)
-            console.log(data)
             res.send(compileFile(path)(data));
         })
     }

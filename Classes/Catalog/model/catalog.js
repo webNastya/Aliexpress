@@ -43,7 +43,6 @@ exports.get = (req, res, callback)=>{
     });
 }
 exports.post = (req, res, callback)=> {
-    console.log("catalog")
     let cards = Array();
 
     const profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});

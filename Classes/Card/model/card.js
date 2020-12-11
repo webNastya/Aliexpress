@@ -23,7 +23,8 @@ exports.get = (req, res, callback)=>{
                 card: card,
                 favoritesCnt: favoritesCnt,
                 basketCnt: basketCnt,
-                layout: "card"
+                layout: "card",
+                moment : require('moment')
             };
             callback(data);
         });
@@ -44,7 +45,8 @@ exports.post = (req, res, callback)=> {
                 })
             }
             let data = {
-                card: card
+                card: card,
+                moment : require('moment')
             };
             callback(data);
         });

@@ -3,13 +3,44 @@
         a(href='#') Категория
         |  > Какой-то товар
     .card-content
-        img.each-good-img(src=card.img alt='')
+        img.each-good-img(src="src/img/carts/"+card.id+"/0.png" alt='')
         .each-good-description
-            h1.each-good-title Main title
-            p.each-good-title !{card.title}
-            p.each-good-price
-                | !{card.price.toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
-                button.add-favorite.like-each-card(class=card.inFavorites ? "active" : "" data-id=card.id)
+            h1.title !{card.title}
+
+            p.price
+                if(card.discount>0)
+                    - let disPrice = card.price * (1 - (card.discount / 100))
+                    p.discount -!{card.discount}%
+                    p.discount-price !{card.price.toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
+                    p.main-price !{disPrice.toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
+                else
+                    p.main-price !{card.price.toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
+            p #[strong Описание:]
+            p.description !{card.description}
+            if(card.modifications)
+                .modifications
+                    for modification in card.modifications
+                        .modification-name Модификация: !{modification.name}
+                        br
+                        .colors
+                            p #[strong Цвета:]
+                            for color_id in modification.colors
+                                img.color(src="src/img/carts/"+color_id+"/0.png" alt="")
+            br
+            p #[strong Характеристики:]
+            p.characters
+                for top_character in card.characters
+                    .character-name #[strong !{top_character.name} :]
+                    ul
+                    for character in top_character.value
+                        li.character #[i !{character.name}] : !{character.value}
+                    br
+            - moment.locale('ru');
+            - let delivery = moment().add(card.delivery, 'days').format("ddd, Do MMM")
+            - delivery = delivery.charAt(0).toUpperCase() + delivery.slice(1);
+            p.delivery #[strong Доставка:] #{delivery}
+            p.sales #[strong Продано:] !{card.sales} шт.
             .calc
                 - let attributes = card.inBasket ? {disabled: "true"} : {};
                 button.add-card(data-id=card.id)&attributes(attributes) Добавить товар
+                button.add-favorite.like-each-card(class=card.inFavorites ? "active" : "" data-id=card.id)
