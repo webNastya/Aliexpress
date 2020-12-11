@@ -13,7 +13,7 @@
                     button.add-each-card(data-id=card.id) +
                 .basket-trigger
                     button.basket-delete(data-id=card.id)
-                    button#basket-fav.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
+                    button.add-favorite.basket-fav(class=card.inFavorites ? "active" : "" data-id=card.id)
 .basket-total
     .total-container
         .quantity

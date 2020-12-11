@@ -4,7 +4,6 @@ each card in cards
             img.card-img-top(data-each-id=card.id src=card.img alt='')
             button.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
         .card-body.justify-content-between
-            .card-title(data-each-id=card.id) !{card.title}
             .card-price !{card.price.toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
+            .card-title(data-each-id=card.id) !{card.title}
             - let attributes = card.inBasket ? {disabled: "true"} : {};
-            button.add-cat-card(data-id=card.id)&attributes(attributes) В корзину
