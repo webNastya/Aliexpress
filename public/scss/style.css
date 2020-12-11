@@ -145,8 +145,7 @@ button:focus{outline:transparent}
 	text-overflow:ellipsis;white-space:nowrap;cursor:pointer}
 
 .category-item:hover{color:#FF4747;text-decoration:none}
-
-
+	
 #cards-wrapper{display:flex;flex-wrap:wrap}
 .card-wrapper{width:185px;margin:0 10px 30px 10px}
 .card-wrapper:hover .add-favorite{display: block}
