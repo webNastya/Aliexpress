@@ -15,9 +15,11 @@
                     p.main-price !{disPrice.toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
                 else
                     p.main-price !{card.price.toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
-            p #[strong Описание:]
-            p.description !{card.description}
+            if(card.description)
+                p #[strong Описание:]
+                p.description !{card.description}
             if(card.modifications)
+                p #[strong Модификации:]
                 .modifications
                     for modification in card.modifications
                         .modification-name Модификация: !{modification.name}
@@ -25,7 +27,12 @@
                         .colors
                             p #[strong Цвета:]
                             for color_id in modification.colors
-                                img.color(src="src/img/carts/"+color_id+"/0.png" alt="")
+                                img.color(data-id=color_id src="src/img/carts/"+color_id+"/0.png" alt="")
+            if(card.colors)
+                p #[strong Цвета:]
+                .colors
+                    for color_id in card.colors
+                        img.color(data-id=color_id src="src/img/carts/" + color_id + "/0.png" alt="")
             br
             p #[strong Характеристики:]
             p.characters
