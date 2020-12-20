@@ -89,6 +89,7 @@ button:focus{outline:transparent}
 
 
 #content-wrapper{display:flex;flex-wrap:wrap}
+#cards-wrapper{display:flex;flex-wrap:wrap}
 .card-wrapper{width: 220px;margin: 0 20px 40px 20px}
 
 .card-img-wrapper{
@@ -192,10 +193,11 @@ button:focus{outline:transparent}
 
 .search.error{-webkit-animation:2s linear error;-o-animation:2s linear error;animation:2s linear error}
 
-.card-content{display: -webkit-flex;display: -moz-flex;display: -ms-flex;display: -o-flex;display: flex;}
+/*.card-content{display: -webkit-flex;display: -moz-flex;display: -ms-flex;display: -o-flex;display: flex;}*/
 .each-good p a{color: #FF4747}
-.each-good-img{margin-right: 20px; height: auto; width: auto; max-width: 300px; max-height: 300px;}
-
+.each-good-img{margin-right: 20px; width: 100%; max-width: 300px}
+.card-img-main > img{margin-right: 20px; width: 100%; max-width: 300px}
+.card-imgs {display: flex}
 .like-each-card{min-width:32px;height:32px;
 	background-color:transparent;background-image:url(../img/favourite.svg);
 	border:none;margin-left: 30px;background-size: contain}
@@ -207,7 +209,8 @@ button:focus{outline:transparent}
 .each-good-title{font-size: 22px;}
 
 .colors > img {display: inline-block; height: 150px; width: auto; max-width: 300px; max-height: 300px; cursor: pointer; margin-right: 20px}
-
+.card-img-side {width: 300px;}
+.card-img-side > img {display: inline-block; height: 150px; width: auto; max-width: 300px; max-height: 300px; cursor: pointer; margin-right: 20px}
 .main-price{font-size: 28px;}
 .discount-price{text-decoration: line-through}
 

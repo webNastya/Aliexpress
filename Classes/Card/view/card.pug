@@ -3,9 +3,15 @@
         a(href='#') Категория
         |  > Какой-то товар
     .card-content
-        img.each-good-img(src="src/img/carts/"+card.id+"/0.png" alt='')
+        h1.title !{card.title}
+        .card-imgs
+            .card-img-side
+                - let i = 0
+                while i < card.img_len
+                    img(src="src/img/carts/"+card.id+"/"+ i++ +".png" alt='')
+            .card-img-main
+                img(src="src/img/carts/"+card.id+"/0.png" alt='')
         .each-good-description
-            h1.title !{card.title}
 
             p.price
                 if(card.discount>0)

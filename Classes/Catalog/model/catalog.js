@@ -1,17 +1,25 @@
 const db = require('../../../db').get();
 const ObjectId = require('mongodb').ObjectID;
 
+cardsOnPage = 20;
 exports.get = (req, res, callback)=>{
     let cards = Array();
     let favoritesCnt = 0;
     let basketCnt = 0;
 
-    const profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});
-    const cardsCursor = db.collection("cards").find({}).limit(20);
+    let lastId = req.query.lastId
+    let profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});
+    let cardsCursor = db.collection("cards")
+    if(lastId)
+        cardsCursor = cardsCursor.find({"id": {$gt: lastId}})
+    else
+        cardsCursor = cardsCursor.find({})
     cardsCursor
+        .limit(cardsOnPage)
         .forEach((card) => {
             cards.push(card);
-        }).then(() => {
+        })
+        .then(() => {
             profileCursor.then(profile => {
                 if (profile != null) {
                     basketCnt = profile.basket.length;
@@ -39,19 +47,26 @@ exports.get = (req, res, callback)=>{
                     layout: "catalog"
                 }
                 callback(data);
-            });
-    });
+            })
+    })
 }
 exports.post = (req, res, callback)=> {
     let cards = Array();
 
-    const profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});
-    const cardsCursor = db.collection("cards").find({}).limit(20);
+    let lastId = req.body.lastId
+    let profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});
+    let cardsCursor = db.collection("cards")
+    if(lastId)
+        cardsCursor = cardsCursor.find({"id": {$gt: lastId}})
+    else
+        cardsCursor = cardsCursor.find({})
 
     cardsCursor
+        .limit(20)
         .forEach((card) => {
             cards.push(card);
-        }).then(() => {
+        })
+        .then(() => {
         profileCursor.then(profile => {
             if (profile != null) {
                 profile.favorites.forEach(id => {

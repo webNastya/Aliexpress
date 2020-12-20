@@ -1,6 +1,7 @@
 const db = require('../../../db').get();
 const ObjectId = require('mongodb').ObjectID;
 
+cardsOnPage = 20;
 exports.get = (req, res, callback)=>{
     let cards = Array();
     let favoritesCnt = 0;
@@ -8,7 +9,7 @@ exports.get = (req, res, callback)=>{
     let category = req.query.cat;
 
     const profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});
-    const cardsCursor = db.collection("cards").find({category: category}).limit(20);
+    const cardsCursor = db.collection("cards").find({category: category}).limit(cardsOnPage);
 
     cardsCursor
         .forEach((card)=>{
@@ -46,11 +47,19 @@ exports.get = (req, res, callback)=>{
 exports.post = (req, res, callback)=> {
     let cards = Array();
     let category = req.body.category;
+    let lastId = req.body.lastId
 
     const profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});
-    const cardsCursor = db.collection("cards").find({category: category}).limit(20);
+    let cardsCursor = db.collection("cards")
+
+    if(lastId)
+        cardsCursor = cardsCursor.find({"category": category,"id": {$gt: lastId}})
+    else {
+        cardsCursor = cardsCursor.find({"category": category})
+    }
 
     cardsCursor
+        .limit(cardsOnPage)
         .forEach((card)=>{
             cards.push(card);
         }).then(()=>{

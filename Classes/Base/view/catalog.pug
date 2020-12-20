@@ -1,7 +1,7 @@
 each card in cards
-    .card-wrapper
+    .card-wrapper(data-id=card.id)
         .card-img-wrapper
-            img.card-img-top(data-id=card.id src="src/img/carts/"+card.id+"/0.png" alt='')
+            img.card-img-top(data-id=card.id src="src/img/carts/" + card.id + "/0.png" alt='')
             button.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
         .card-body.justify-content-between
             .card-title(data-id=card.id) !{card.title}

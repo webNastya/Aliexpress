@@ -17,18 +17,24 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 	class Catalog{
 		constructor(){}
-		showCards(){
-			this.show("/",{});
-			window.history.pushState({}, "index", "/");
-		}
 		openCard(id){
 			this.show("/card",{"id": id});
 			window.history.pushState({id: id}, "card", "/card?id=" + id);
 		}
+		showCatalog(data){
+			if(data["lastId"])
+				this.pushCards("/", data)
+			else
+				this.show("/", data)
+			window.history.pushState({}, "catalog", "/");
+		}
 
-		showCategory(category){
-			this.show("/category",{"category": category});
-			window.history.pushState({category: category}, "category", "/category?cat=" + category);
+		showCategory(data){
+			if(data["lastId"])
+				this.pushCards("/category", data)
+			else
+				this.show("/category", data)
+			window.history.pushState({category: data["category"]}, "category", "/category?cat=" + data["category"]);
 		}
 
 		addBasket(elem){
@@ -37,15 +43,29 @@ document.addEventListener('DOMContentLoaded', () => {
 			ajax("/basket/add", {"card" : {"id": id}}, (res)=>{
 				document.querySelector('#basket-main-btn span').textContent++
 				// Заглушка
-				catalog.showCards();
+				catalog.showCatalog({});
 			})
 		}
 
 		show(url, body){
 			ajax(url, body, (res)=>{
-				document.querySelector('#content-wrapper').innerHTML = res.responseText;
+				document.querySelector('#content-wrapper').innerHTML = res.responseText
+				scroll(0,0)
+			})
+		}
+
+		pushCards(url, body){
+			ajax(url, body, (res)=>{
+				if(Cookies.get('currState') === Cookies.get('prevState'))
+					document.querySelector('#cards-wrapper').innerHTML += res.responseText
+				else {
+					document.querySelector('#content-wrapper').innerHTML = res.responseText
+					scroll(0, 0)
+				}
+
+				Cookies.set('prevState', Cookies.get('currState'))
 			});
-		};
+		}
 
 		handlers (event){
 			const target = event.target;
@@ -78,14 +98,35 @@ document.addEventListener('DOMContentLoaded', () => {
 				catalog.openCard(target.dataset.id);
 			}
 			else if(target.classList.contains('category-item')) {
-				catalog.showCategory(target.dataset.category);
+				let category = target.dataset.category
+				catalog.showCategory({category: category})
+			}
+			else if(target.id == "show-more"){
+				let lastId = document.querySelector("#cards-wrapper >div:last-child").dataset.id
+				let data = {lastId: lastId}
+				const category = new URLSearchParams(window.location.search).get('cat')
+				if(Cookies.get('currState')==="category") {
+					Object.assign(data, {category: category})
+					catalog.showCategory(data)
+				}
+				else if(Cookies.get('currState')==="catalog")
+					catalog.showCatalog(data)
+				else if(Cookies.get('currState')==="favorites") {
+					let cardsCnt = document.querySelectorAll("#cards-wrapper >div").length
+					Object.assign(data, {cardsCnt: cardsCnt})
+					console.log(cardsCnt)
+					favorites.showFavorites(data)
+				}
 			}
 		}
 	}
 	class Favorites{
-		showFavorites(){
-			catalog.show("/favorites", {});
-			window.history.pushState({}, "favorites", "/favorites");
+		showFavorites(data){
+			if(data["lastId"])
+				catalog.pushCards("/favorites", data)
+			else
+				catalog.show("/favorites", data)
+			window.history.pushState(data, "favorites", "/favorites");
 		}
 
 		addFavorite(elem){
@@ -107,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		handlers(event){
 			let target = event.target;
 			if(target.id == 'favorites-btn') {
-				favorites.showFavorites()
+				favorites.showFavorites({})
 			}
 		}
 	}
@@ -189,6 +230,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	document.querySelector('#basket-main-btn').addEventListener('click', basket.handlers);
 
 	document.querySelector('.logo').addEventListener('click', () => {
-		catalog.showCards();
+		catalog.showCatalog({});
 	});
 });
