@@ -1,7 +1,7 @@
 const db = require('../../../db').get();
 const ObjectId = require('mongodb').ObjectID;
 
-cardsOnPage = 20;
+cardsOnPage = 18;
 exports.get = (req, res, callback)=>{
     let cards = Array();
     let favoritesCnt = 0;

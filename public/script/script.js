@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	document.querySelector('#content-wrapper').addEventListener('click', catalog.handlers);
 
-	document.querySelector('#category').addEventListener('click', catalog.handlers);
+	document.querySelector('.category').addEventListener('click', catalog.handlers);
 
 	document.querySelector('#favorites-btn').addEventListener('click', favorites.handlers);
 	document.querySelector('#basket-main-btn').addEventListener('click', basket.handlers);

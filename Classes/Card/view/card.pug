@@ -53,8 +53,7 @@
             - delivery = delivery.charAt(0).toUpperCase() + delivery.slice(1);
             p.delivery #[strong Доставка:] #{delivery}
             p.sales #[strong Продано:] !{card.sales} шт.
-
             .calc
                 - let attributes = card.inBasket ? {disabled: "true"} : {};
                 button.add-card(data-id=card.id)&attributes(attributes) Добавить товар
-                button.like-each-card(class=card.inFavorites ? "active" : "" data-id=card.id)
+                button.add-favorite.like-each-card(class=card.inFavorites ? "active" : "" data-id=card.id)

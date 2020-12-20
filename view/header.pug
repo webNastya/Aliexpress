@@ -2,11 +2,23 @@ header
     .container.header-main
         .container-mini
             .logo
+
+            .category
+                .category-title Категории
+                    .cat-container
+                        .submenu
+                            .category-item(data-category='Смартфоны') Смартфоны
+                                .sub
+                                    .category-item(data-category='Аксессуары для смартфонов') Аксессуары для смартфонов
+                            .category-item(data-category='Фитнес браслеты') Фитнес браслеты
+                            .category-item(data-category='Умные часы') Умные часы
+                            .category-item(data-category='Наушники') Наушники
+                            .category-item(data-category='Портативные колонки') Портативные колонки
+                            .category-item(data-category='Комплектующие для ПК') Комплектующие для ПК
+
             form#search
                 .search-wrapper
-                    input#searchGoods.search-wrapper_input(type='text' role='search' placeholder='Поиск')
-                div
-                    button#search-clear
+                    input#searchGoods.search-wrapper_input(type='search' role='search' placeholder='Поиск')
                 .search-wrap-btn
                     button#search-btn.search-btn(type='submit' aria-label='Поиск товаров')
         .container-mini
