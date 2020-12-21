@@ -9,7 +9,15 @@ exports.get = (req, res, callback)=>{
     let category = req.query.cat;
 
     const profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});
-    const cardsCursor = db.collection("cards").find({category: category}).limit(cardsOnPage);
+    let cardsCursor = db.collection("cards")
+
+    cardsCursor = cardsCursor.aggregate([
+        { $match: {
+                "category": category
+            }
+        },
+        {$sample: {size: cardsOnPage}}
+    ])
 
     cardsCursor
         .forEach((card)=>{
@@ -48,18 +56,21 @@ exports.post = (req, res, callback)=> {
     let cards = Array();
     let category = req.body.category;
     let lastId = req.body.lastId
+    let availableCards = req.body.availableCards
 
     const profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});
     let cardsCursor = db.collection("cards")
 
-    if(lastId)
-        cardsCursor = cardsCursor.find({"category": category,"id": {$gt: lastId}})
-    else {
-        cardsCursor = cardsCursor.find({"category": category})
-    }
+    cardsCursor = cardsCursor.aggregate([
+        { $match: {
+            "category": category,
+                "id": {$nin: availableCards ? availableCards : []}
+            }
+        },
+        {$sample: {size: cardsOnPage}}
+    ])
 
     cardsCursor
-        .limit(cardsOnPage)
         .forEach((card)=>{
             cards.push(card);
         }).then(()=>{

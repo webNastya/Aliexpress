@@ -104,8 +104,11 @@ document.addEventListener('DOMContentLoaded', () => {
 			else if(target.id == "show-more"){
 				let lastId = document.querySelector("#cards-wrapper >div:last-child").dataset.id
 				let data = {lastId: lastId}
-				const category = new URLSearchParams(window.location.search).get('cat')
+				let availableCards = []
+				document.querySelectorAll(".card-img-wrapper>img").forEach(function(o){ availableCards.push(o.dataset.id) })
+				Object.assign(data, {availableCards: availableCards})
 				if(Cookies.get('currState')==="category") {
+					const category = new URLSearchParams(window.location.search).get('cat')
 					Object.assign(data, {category: category})
 					catalog.showCategory(data)
 				}

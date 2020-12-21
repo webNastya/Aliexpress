@@ -9,14 +9,18 @@ exports.get = (req, res, callback)=>{
     let basketCnt = 0
 
     let lastId = req.query.lastId
+    let availableCards = req.body.availableCards
     let profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)})
     let cardsCursor = db.collection("cards")
-    if(lastId)
-        cardsCursor = cardsCursor.find({"id": {$gt: lastId}})
-    else
-        cardsCursor = cardsCursor.find({})
+
+    cardsCursor = cardsCursor.aggregate([
+        { $match: {
+                "id": {$nin: availableCards ? availableCards : []}
+            }
+        },
+        {$sample: {size: cardsOnPage}}
+    ])
     cardsCursor
-        .limit(cardsOnPage)
         .forEach((card) => {
             cards.push(card)
         })
@@ -55,15 +59,19 @@ exports.post = (req, res, callback)=> {
     let cards = Array();
 
     let lastId = req.body.lastId
+    let availableCards = req.body.availableCards
     let profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});
     let cardsCursor = db.collection("cards")
-    if(lastId)
-        cardsCursor = cardsCursor.find({"id": {$gt: lastId}})
-    else
-        cardsCursor = cardsCursor.find({})
+
+    cardsCursor = cardsCursor.aggregate([
+        { $match: {
+                "id": {$nin: availableCards ? availableCards : []}
+            }
+        },
+        {$sample: {size: cardsOnPage}}
+    ])
 
     cardsCursor
-        .limit(cardsOnPage)
         .forEach((card) => {
             cards.push(card);
         })
