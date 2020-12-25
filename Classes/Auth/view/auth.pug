@@ -1,0 +1,13 @@
+h1 Login
+a !{errors}
+form(action='/auth/register' method='POST')
+    div
+        label(for='login') Login
+        input#login(type='text' name='login' value=login required='')
+    div
+        label(for='password') Password
+        input#password(type='password' name='password' value=password  required='')
+    div
+        label(for='repassword') Password
+        input#repassword(type='repassword' name='repassword' value=repassword  required='')
+    button(type='submit') Login

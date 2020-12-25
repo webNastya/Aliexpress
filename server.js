@@ -2,9 +2,14 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       session = require('express-session'),
       FileStore = require('session-file-store')(session),
+      passport = require("passport"),
       DB = require( './db' ),
       cookieParser = require('cookie-parser'),
       app = express()
+require("dotenv").config()
+
+//passport config
+// require("./config/passport")(passport)
 
 // Модуль cookie
 app.use(cookieParser('secret key'))
@@ -53,9 +58,11 @@ DB.connect( function( err, client ) {
     const basket = require('./Classes/Basket/router/basket'),
           catalog = require('./Classes/Catalog/router/catalog'),
           card = require('./Classes/Card/router/card'),
+          auth = require('./Classes/Auth/router/auth'),
           category = require('./Classes/Category/router/category'),
           favorites = require('./Classes/Favorites/router/favorites')
     app.use('/', catalog);
+    app.use('/auth', auth);
     app.use('/card', card);
     app.use('/category', category);
     app.use('/favorites', favorites);
