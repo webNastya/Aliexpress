@@ -8,9 +8,6 @@ const express = require('express'),
       app = express()
 require("dotenv").config()
 
-//passport config
-// require("./config/passport")(passport)
-
 // Модуль cookie
 app.use(cookieParser('secret key'))
 
@@ -32,7 +29,10 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: { maxAge: 7 * 24 * 60 * 60 * 1000} // 1 week
-}));
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Соединение с базой
 DB.connect( function( err, client ) {
@@ -40,8 +40,8 @@ DB.connect( function( err, client ) {
 
     // Обработка сессий
     app.use((req, res, next)=>{
-        const db = require('./db').get();
         if(!req.session.token){
+            const db = require('./db').get();
             const collectionProfile = db.collection("profiles");
             collectionProfile
                 .insertOne({favorites: [], basket: []},
@@ -54,6 +54,9 @@ DB.connect( function( err, client ) {
         }
         next()
     })
+    //passport config
+    require("./config/passport")(passport)
+
     // Роутинг страниц
     const basket = require('./Classes/Basket/router/basket'),
           catalog = require('./Classes/Catalog/router/catalog'),

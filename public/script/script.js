@@ -117,7 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
 				else if(Cookies.get('currState')==="favorites") {
 					let cardsCnt = document.querySelectorAll("#cards-wrapper >div").length
 					Object.assign(data, {cardsCnt: cardsCnt})
-					console.log(cardsCnt)
 					favorites.showFavorites(data)
 				}
 			}
@@ -220,10 +219,29 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		}
 	}
+	class Authorization{
+		login(elem){
+			let login = document.querySelector('input[name="login"]').value
+			let password = document.querySelector('input[name="password"]').value
 
-	catalog = new Catalog();
-	favorites = new Favorites();
-	basket = new Basket();
+			ajax("/auth/login", {"login" : login, "password": password}, (res)=>{
+				console.log(res.responseText)
+			})
+		}
+		signup(elem){
+			let login = document.querySelector('input[name="login"]').value
+			let password = document.querySelector('input[name="password"]').value
+
+			ajax("/auth/signup", {"login" : login, "password": password}, (res)=>{
+				console.log(res.responseText)
+			})
+		}
+	}
+
+	catalog = new Catalog()
+	favorites = new Favorites()
+	basket = new Basket()
+	auth = new Authorization()
 
 	document.querySelector('#content-wrapper').addEventListener('click', catalog.handlers);
 
@@ -234,5 +252,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	document.querySelector('.logo').addEventListener('click', () => {
 		catalog.showCatalog({});
-	});
+	})
+	document.querySelector('button.login').addEventListener('click', (event) => {
+		auth.login(event);
+	})
+	document.querySelector('button.signup').addEventListener('click', (event) => {
+		auth.signup(event);
+	})
+
 });

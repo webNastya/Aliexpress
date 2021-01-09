@@ -1,48 +1,9 @@
-head
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
-    script.
-        $(function(){
-            if($("#errors").text() != ""){
-                $("#loginPage").hide();
-                $("#regPage").show();
-            }
-            $("#1").click(function(){
-                $("#loginPage").show();
-                $("#regPage").hide();
-            })
-            $("#2").click(function(){
-                $("#loginPage").hide();
-                $("#regPage").show();
-            })        
-        })
+div(class="loginPage" id = "loginPage", style="display:block")
+    label(class="loginPage" for='login') Login
+    input#login(class="loginPage" type='text' name='login' value=login required='')
 
-div(id = "content")
-div(id = "loginPage", style="display:block")
-    form(action='/auth/login' method='POST')
-        h1 Login
-        div
-            label(for='login') Login
-            input#login(type='text' name='login' value=login required='')
-        div
-            label(for='password') Password
-            input#password(type='password' name='password' value=password  required='')
-        button(type='submit') Login
+    label(class="loginPage" for='password') Password
+    input#password(class="loginPage" type='password' name='password' value=password  required='')
 
-div(id = "regPage", style="display:none")
-    a(id="errors") !{errors}
-    form(action='/auth/register' method='POST')
-        h1 Register
-        p(id = "errors")
-        div
-            label(for='regLogin') Login
-            input#reglogin(type='text' name='regLogin' value=regLogin required='')
-        div
-            label(for='regPassword') Password
-            input#regpassword(type='password' name='regPassword' value=regPassword  required='')
-        div
-            label(for='repassword') Password
-            input#repassword(type='repassword' name='repassword' value=repassword  required='')
-        button(type='submit') Login
- 
-a(id="1") Login 
-a(id="2") Reg
+    button.signup(class="loginPage" ) Signup
+    button.login(class="loginPage" ) Login
