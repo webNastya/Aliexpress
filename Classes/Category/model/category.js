@@ -1,6 +1,7 @@
 const db = require('../../../db').get();
 const ObjectId = require('mongodb').ObjectID;
 
+cardsOnPage = 18;
 exports.get = (req, res, callback)=>{
     let cards = Array();
     let favoritesCnt = 0;
@@ -8,7 +9,15 @@ exports.get = (req, res, callback)=>{
     let category = req.query.cat;
 
     const profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});
-    const cardsCursor = db.collection("cards").find({category: category}).limit(20);
+    let cardsCursor = db.collection("cards")
+
+    cardsCursor = cardsCursor.aggregate([
+        { $match: {
+                "category": category
+            }
+        },
+        {$sample: {size: cardsOnPage}}
+    ])
 
     cardsCursor
         .forEach((card)=>{
@@ -46,9 +55,20 @@ exports.get = (req, res, callback)=>{
 exports.post = (req, res, callback)=> {
     let cards = Array();
     let category = req.body.category;
+    let lastId = req.body.lastId
+    let availableCards = req.body.availableCards
 
     const profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});
-    const cardsCursor = db.collection("cards").find({category: category}).limit(20);
+    let cardsCursor = db.collection("cards")
+
+    cardsCursor = cardsCursor.aggregate([
+        { $match: {
+            "category": category,
+                "id": {$nin: availableCards ? availableCards : []}
+            }
+        },
+        {$sample: {size: cardsOnPage}}
+    ])
 
     cardsCursor
         .forEach((card)=>{

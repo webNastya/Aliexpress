@@ -1,25 +1,38 @@
-const db = require('../../../db').get();
-const ObjectId = require('mongodb').ObjectID;
+const db = require('../../../db').get()
+const ObjectId = require('mongodb').ObjectID
+
+cardsOnPage = 18
 
 exports.get = (req, res, callback)=>{
-    let cards = Array();
-    let favoritesCnt = 0;
-    let basketCnt = 0;
+    let cards = Array()
+    let favoritesCnt = 0
+    let basketCnt = 0
 
-    const profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});
-    const cardsCursor = db.collection("cards").find({}).limit(20);
+    let lastId = req.query.lastId
+    let availableCards = req.body.availableCards
+    let profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)})
+    let cardsCursor = db.collection("cards")
+
+    cardsCursor = cardsCursor.aggregate([
+        { $match: {
+                "id": {$nin: availableCards ? availableCards : []}
+            }
+        },
+        {$sample: {size: cardsOnPage}}
+    ])
     cardsCursor
         .forEach((card) => {
-            cards.push(card);
-        }).then(() => {
+            cards.push(card)
+        })
+        .then(() => {
             profileCursor.then(profile => {
                 if (profile != null) {
-                    basketCnt = profile.basket.length;
-                    favoritesCnt = profile.favorites.length;
+                    basketCnt = profile.basket.length
+                    favoritesCnt = profile.favorites.length
                     profile.favorites.forEach(id => {
                         for (let i = 0; i < cards.length; i++) {
                             if (cards[i].id === id) {
-                                cards[i].inFavorites = true;
+                                cards[i].inFavorites = true
                             }
                         }
                     });
@@ -39,19 +52,30 @@ exports.get = (req, res, callback)=>{
                     layout: "catalog"
                 }
                 callback(data);
-            });
-    });
+            })
+    })
 }
 exports.post = (req, res, callback)=> {
     let cards = Array();
 
-    const profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});
-    const cardsCursor = db.collection("cards").find({}).limit(20);
+    let lastId = req.body.lastId
+    let availableCards = req.body.availableCards
+    let profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});
+    let cardsCursor = db.collection("cards")
+
+    cardsCursor = cardsCursor.aggregate([
+        { $match: {
+                "id": {$nin: availableCards ? availableCards : []}
+            }
+        },
+        {$sample: {size: cardsOnPage}}
+    ])
 
     cardsCursor
         .forEach((card) => {
             cards.push(card);
-        }).then(() => {
+        })
+        .then(() => {
         profileCursor.then(profile => {
             if (profile != null) {
                 profile.favorites.forEach(id => {
