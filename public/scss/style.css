@@ -3,6 +3,7 @@
 header{margin-bottom: 40px}
 body{font-family:'Montserrat', sans-serif}
 ul{list-style:none;margin:0;padding:0}
+#content-wrapper{width: 100%}
 
 input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;-moz-appearance:none;appearance:none;margin:0}
 
@@ -168,13 +169,13 @@ button:focus{outline:transparent}
 
 .card:hover{box-shadow:0 1px 8px 0 rgba(0,0,0,.08)}
 
-.card-title{overflow:hidden;font-size:14px;line-height:1.38;
-	padding-bottom:5px;position:relative;z-index:4;white-space:nowrap;
+.card-title{overflow:hidden;line-height:1.38;
+	padding-bottom:5px;white-space:nowrap;
 	text-overflow:ellipsis;margin-bottom:0;cursor: pointer}
 
 .card-title:hover{text-decoration:none;cursor:pointer;color:#FF4747}
 
-.card-body{display:flex;flex-direction:column;padding:20px 0 0 0}
+.card-body{padding:20px 0 0 0}
 
 .card-price{font-size:22px;font-weight:700;margin-bottom:5px;letter-spacing:1px}
 
@@ -226,7 +227,7 @@ button:focus{outline:transparent}
 .total-container{padding: 30px}
 
 .quantity, .price{display: flex;justify-content: space-between}
-.price{padding-top: 5px;font-weight: 600}
+.price{font-weight: 600}
 .price span{display: flex}
 .price span div{padding-right:3px}
 
@@ -237,13 +238,12 @@ button:focus{outline:transparent}
 
 .search.error{-webkit-animation:2s linear error;-o-animation:2s linear error;animation:2s linear error}
 
-.card-content{display: -webkit-flex;display: -moz-flex;display: -ms-flex;display: -o-flex;display: flex;}
+.card-content{display: -webkit-flex;display: -moz-flex;display: -ms-flex;display: -o-flex;display: flex;margin-bottom: 40px}
 
 .each-good-content p a:hover{text-decoration:none;color: #FF4747}
-.each-good-img{margin-right: 20px; height: auto; width: auto; max-width: 300px; max-height: 300px;}
+.each-good-img{margin-right: 20px; height: auto; width: auto; max-width: 500px; max-height: 500px}
 
-.each-good-description{max-width: 600px}
-.each-good-title{font-size: 22px}
+.title{font-size: 26px;font-weight: 500}
 
 .each-good-price{display:flex;font-size: 28px;font-weight: 500}
 
@@ -256,8 +256,8 @@ button:focus{outline:transparent}
 	50%{transform: scale( 1.25 )}
 	100% {transform: scale( 1 )}
 }
-.add-favorite{width:32px;height:32px;background-color:transparent;
-	background-image:url(../img/fav-static.svg);background-repeat:no-repeat;
+.add-favorite{cursor: pointer; width:32px;height:32px;background-color:transparent;
+	background-image:url(../img/fav-static.svg);background-repeat:no-repeat;background-size: contain;
 	position:absolute;top:7px;right:0;border:none;display:none}
 .add-favorite:hover{
 	animation: pulse 1s infinite;background-image: url(../img/fav-hover.svg)}
@@ -265,14 +265,65 @@ button:focus{outline:transparent}
 	background-image: url(../img/fav-active.svg);display: block}
 
 .basket-fav{display:block;top: 5px;position:relative}
-.like-each-card{display:block;position:relative;
-	margin-left: 30px;background-size: contain}
+.like-each-card{display:block;position:relative;margin-left: 30px}
 
-
-.colors > img {display: inline-block; height: 150px; width: auto; max-width: 300px; max-height: 300px; cursor: pointer; margin-right: 20px}
+.colors{max-width: 250px;margin-bottom: 20px}
+.colors > img {display: inline-block; height: 150px; width: auto; max-width: 70px; max-height: 70px; cursor: pointer; margin: 10px}
+.color:hover{border: 1px solid #0f6674}
 
 .main-price{font-size: 28px;}
 .discount-price{text-decoration: line-through}
+
+.inner-content{display: flex}
+
+.characters-min{width: 400px}
+.characters{width: 800px;font-size: 18px;margin-bottom: 40px}
+.character-name{margin-top: 20px; margin-bottom: 10px}
+.characteristics{font-size: 22px;font-weight: 500}
+.charact-cont{position: relative;overflow: hidden;
+	list-style-type: none;display: flex;
+	justify-content: space-between}
+.character{overflow: hidden}
+.character:after {
+	content: "";
+	display: block;
+	left: 0;
+	bottom: .2em;
+	position: absolute;
+	width: 100%;
+	border-bottom: 1px dotted #d6dbe0}
+.delivery{margin-top: 10px}
+
+
+.content-similar-wrapper{display: flex;align-items: flex-end;transition: transform 0.6s ease}
+.similar-wrapper{min-width:290px;margin:0 10px 30px 10px;text-align: center;}
+.similar-wrapper:hover .add-favorite{display: block}
+
+.arrows{width: 42px;height: 42px;position: absolute;margin-top: 10%;
+	border: none;background-size: contain;background-repeat: no-repeat;
+	display: none;
+}
+.arrows:hover{filter: invert(71%) sepia(100%) saturate(3506%) hue-rotate(357deg) brightness(97%) contrast(94%);cursor: pointer}
+
+.arrow-left{left: 50px}
+.arrow-right{right: 30px}
+
+
+.similar-img{
+	width:auto;height:auto;max-width:220px;max-height:220px;object-fit:cover;margin: auto; 
+	background-position:center;background-size:contain;background-repeat:no-repeat;border-top-left-radius:0;border-top-right-radius:0}
+.similar-body{padding:20px 0 0 0}
+
+.similar-title{font-size: 26px;font-weight: 500;margin-bottom: 20px}
+.similar-card-title{overflow:hidden;line-height:1.38;
+	padding-bottom:5px;white-space:nowrap;
+	text-overflow:ellipsis;margin-bottom:0;cursor: pointer}
+.similar-card-title:hover{text-decoration:none;cursor:pointer;color:#FF4747}
+
+.similar-price{font-size:22px;font-weight:700;margin-bottom:5px;letter-spacing:1px}
+
+.similar {overflow: hidden}
+.slider-show {display: flex}
 
 @media (min-width: 1300px){
 	.container {

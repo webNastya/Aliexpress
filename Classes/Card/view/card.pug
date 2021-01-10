@@ -5,49 +5,132 @@
     .card-content
         img.each-good-img(src="src/img/carts/"+card.id+"/0.png" alt='')
         .each-good-description
-            h1.title !{card.title}
-
-            p.price
-                if(card.discount>0)
+            .title !{card.title}
+            .price
+                if(card.discount > 0)
                     - let disPrice = card.price * (1 - (card.discount / 100))
                     p.discount -!{card.discount}%
                     p.discount-price !{card.price.toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
                     p.main-price !{disPrice.toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
                 else
                     p.main-price !{card.price.toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
-            if(card.description)
-                p #[strong Описание:]
-                p.description !{card.description}
-            if(card.modifications)
-                p #[strong Модификации:]
-                .modifications
-                    for modification in card.modifications
-                        .modification-name Модификация: !{modification.name}
-                        br
+
+            .inner-content
+                .cont-main
+
+                    if(card.description)
+                        p #[strong Описание]
+                        p.description !{card.description}
+                    if(card.modifications)
+                        p #[strong Модификации]
+                        .modifications
+                            for modification in card.modifications
+                                .modification-name Модификация !{modification.name}liy
+                                .colors
+                                    p #[strong Цвета]
+                                    for color_id in modification.colors
+                                        img.color(data-id=color_id src="src/img/carts/"+color_id+"/0.png" alt="")
+                    if(card.colors)
+                        p #[strong Цвета]
                         .colors
-                            p #[strong Цвета:]
-                            for color_id in modification.colors
-                                img.color(data-id=color_id src="src/img/carts/"+color_id+"/0.png" alt="")
-            if(card.colors)
-                p #[strong Цвета:]
-                .colors
-                    for color_id in card.colors
-                        img.color(data-id=color_id src="src/img/carts/" + color_id + "/0.png" alt="")
-            br
-            p #[strong Характеристики:]
-            p.characters
-                for top_character in card.characters
-                    .character-name #[strong !{top_character.name} :]
-                    ul
-                    for character in top_character.value
-                        li.character #[i !{character.name}] : !{character.value}
-                    br
-            - moment.locale('ru');
-            - let delivery = moment().add(card.delivery, 'days').format("ddd, Do MMM")
-            - delivery = delivery.charAt(0).toUpperCase() + delivery.slice(1);
-            p.delivery #[strong Доставка:] #{delivery}
-            p.sales #[strong Продано:] !{card.sales} шт.
-            .calc
-                - let attributes = card.inBasket ? {disabled: "true"} : {};
-                button.add-card(data-id=card.id)&attributes(attributes) Добавить товар
-                button.add-favorite.like-each-card(class=card.inFavorites ? "active" : "" data-id=card.id)
+                            for color_id in card.colors
+                                img.color(data-id=color_id src="src/img/carts/" + color_id + "/0.png" alt="")
+
+                    .calc
+                        - let attributes = card.inBasket ? {disabled: "true"} : {};
+                        button.add-card(data-id=card.id)&attributes(attributes) Добавить товар
+                        buuton.add-favorite.like-each-card(class=card.inFavorites ? "active" : "" data-id=card.id)
+                .characters-min
+                    p #[strong О товаре]
+                    for top_character in card.characters
+                        if(top_character.name == "Общие характеристики")
+                            //.character-name #[strong !{top_character.name} :]
+                            for character in top_character.value
+                                .charact-cont
+                                    .character #[i !{character.name}]
+                                    div !{character.value}
+                    - moment.locale('ru');
+                    - let delivery = moment().add(card.delivery, 'days').format("ddd, Do MMM")
+                    - delivery = delivery.charAt(0).toUpperCase() + delivery.slice(1);
+                    p.delivery #[strong Доставка] #{delivery}
+                    p.sales #[strong Продано] !{card.sales} шт.
+
+.characters
+    .characteristics #[m Характеристики]
+    for top_character in card.characters
+        if(top_character.name != "Общие характеристики")
+            .character-name #[strong !{top_character.name}]
+            for character in top_character.value
+                .charact-cont
+                    .character #[i !{character.name}]
+                    div !{character.value}
+.similar
+    .similar-title Похожие товары
+    img.arrow-left.arrows(src="src/img/iconhub/arrow-left.png" alt='')
+    img.arrow-right.arrows.slider-show(src="src/img/iconhub/arrow-right.png" alt='')
+
+    .content-similar-wrapper
+
+        .similar-wrapper
+            .similar-img-wrapper
+                img.similar-img(src="src/img/carts/4528/0.png" alt='')
+                buuton.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
+            .similar-body.justify-content-between
+                .similar-card-title Заголовок
+                .similar-price 235 ₽
+
+        .similar-wrapper
+            .similar-img-wrapper
+                img.similar-img(src="src/img/carts/4529/0.png" alt='')
+                buuton.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
+            .similar-body.justify-content-between
+                .similar-card-title Заголовок
+                .similar-price 235 ₽
+
+        .similar-wrapper
+            .similar-img-wrapper
+                img.similar-img(src="src/img/carts/13205/0.png" alt='')
+                buuton.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
+            .similar-body.justify-content-between
+                .similar-card-title Заголовок
+                .similar-price 235 ₽
+
+        .similar-wrapper
+            .similar-img-wrapper
+                img.similar-img(src="src/img/carts/30610/0.png" alt='')
+                buuton.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
+            .similar-body.justify-content-between
+                .similar-card-title Заголовок
+                .similar-price 235 ₽
+
+        .similar-wrapper
+            .similar-img-wrapper
+                img.similar-img(src="src/img/carts/13205/0.png" alt='')
+                buuton.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
+            .similar-body.justify-content-between
+                .similar-card-title Заголовок
+                .similar-price 235 ₽
+
+        .similar-wrapper
+            .similar-img-wrapper
+                img.similar-img(src="src/img/carts/50157/0.png" alt='')
+                buuton.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
+            .similar-body.justify-content-between
+                .similar-card-title Заголовок
+                .similar-price 235 ₽
+
+        .similar-wrapper
+            .similar-img-wrapper
+                img.similar-img(src="src/img/carts/52663/0.png" alt='')
+                buuton.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
+            .similar-body.justify-content-between
+                .similar-card-title Заголовок
+                .similar-price 235 ₽
+
+        .similar-wrapper
+            .similar-img-wrapper
+                img.similar-img(src="src/img/carts/52663/0.png" alt='')
+                buuton.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
+            .similar-body.justify-content-between
+                .similar-card-title Заголовок
+                .similar-price 235 ₽
