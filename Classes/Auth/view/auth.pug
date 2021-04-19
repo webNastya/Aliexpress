@@ -1,9 +1,11 @@
-div(class="loginPage" id = "loginPage", style="display:block")
-    label(class="loginPage" for='login') Login
+div(class="loginPage" id = "loginPage")
+    h2 Авторизация
+    label(class="loginPage" for='login') Логин
     input#login(class="loginPage" type='text' name='login' value=login required='')
 
-    label(class="loginPage" for='password') Password
+    label(class="loginPage" for='password') Пароль
     input#password(class="loginPage" type='password' name='password' value=password  required='')
 
-    button.signup(class="loginPage" ) Signup
-    button.login(class="loginPage" ) Login
+    button.login(class="loginPage" ) Войти
+    button.signup(class="loginPage" ) Регистрация
+    

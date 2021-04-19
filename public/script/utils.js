@@ -1,21 +1,32 @@
-let catItem = document.querySelectorAll('.category-item')
+// category tabs
+let catItem = document.querySelectorAll('.category-item'),
+    category = document.querySelector('.category'),
+    catCont = document.querySelector('.cat-container')
 function openCategory(){
-    document.querySelector('.category').classList.toggle('show-main')
+    category.classList.toggle('show-main')
     catItem[0].classList.add('show-sub')
-}
-document.querySelector('.category').addEventListener('click', openCategory)
 
-for (let i=0; i<catItem.length; i++){
-    catItem[i].onmouseover = () => {
-        for(let j=0; j<catItem.length; j++){
-            if(catItem[j].classList.contains("show-sub")) {
-                catItem[j].classList.remove("show-sub")
-                break
+    for (let i=0; i<catItem.length; i++){
+        catItem[i].onmouseover = () => {
+            for(let j=0; j<catItem.length; j++){
+                if(catItem[j].classList.contains("show-sub")) {
+                    catItem[j].classList.remove("show-sub")
+                    break
+                }
             }
+            catItem[i].classList.add('show-sub')
         }
-        catItem[i].classList.add('show-sub')
     }
 }
+function closeCategory(){
+    category.classList.remove('show-main')
+}
+// category.addEventListener('click', openCategory)
+document.addEventListener('click', e => {
+    const target = e.target;
+    target === category ? openCategory() : target !== catCont ? closeCategory() : false;
+});
+
 
 
 //auth show

@@ -3,13 +3,12 @@ header
         .container-mini
             .logo
 
-            .category
-                .category-title Категории
+            .category Категории
                     .cat-container
                         .submenu
                             .category-item(data-category='Смартфоны') Смартфоны
                                 .sub
-                                    .category-item(data-category='Аксессуары для смартфонов') Аксессуары для смартфонов
+                                    .category-item.item-sub(data-category='Аксессуары для смартфонов') Аксессуары для смартфонов
                             .category-item(data-category='Фитнес браслеты') Фитнес браслеты
                             .category-item(data-category='Умные часы') Умные часы
                             .category-item(data-category='Наушники') Наушники
@@ -27,7 +26,6 @@ header
             #favorites-btn.nav-elements()
                 span.counter !{favoritesCnt}
             .dropdown
-                #profile-btn.btn
-                    | P
+                #profile-btn.btn.nav-elements
                 .outer-list
                     include ../Classes/Auth/view/auth

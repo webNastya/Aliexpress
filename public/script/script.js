@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	class Catalog{
 		constructor(){}
 		openCard(id){
-			this.show("/card",{"id": id});
+			this.show("/card", {"id": id}, cardScroll);
 			window.history.pushState({id: id}, "card", "/card?id=" + id);
 		}
 		showCatalog(data){
@@ -39,18 +39,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		addBasket(elem){
 			let id = elem.dataset.id;
-
+			
 			ajax("/basket/add", {"card" : {"id": id}}, (res)=>{
 				document.querySelector('#basket-main-btn span').textContent++
-				// Заглушка
-				catalog.showCatalog({});
+				// elem.disabled = true
 			})
+
 		}
 
-		show(url, body){
+		show(url, body, callBack){
 			ajax(url, body, (res)=>{
 				document.querySelector('#content-wrapper').innerHTML = res.responseText
 				scroll(0,0)
+				if (callBack)
+					callBack()
 			})
 		}
 
@@ -156,7 +158,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 	class Basket{
 		showBasket(){
-			catalog.show("/basket", {});
+			catalog.show("/basket", {}, () => document.querySelector('.empty-basket_a').addEventListener('click', () => {
+				catalog.showCatalog({});
+			})
+			);
 			window.history.pushState({}, "favorites", "/basket");
 		}
 
@@ -166,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			ajax("/basket/add", {"card" : {"id": id}}, (res)=>{
 				document.querySelector('#basket-main-btn span').textContent++
 				// Заглушка
-				catalog.openCard(id);
+				// catalog.openCard(id);
 			})
 		}
 		deleteBasket(elem){
@@ -183,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 		addOneToBasket(elem){
 			let id = elem.dataset.id;
-
+			
 			ajax("/basket/add/one", {"card" : {"id": id}}, (res)=>{
 				if (res.responseText == "true") {
 					let price = document.querySelector('.basket-body[data-id="' + id + '"] ' +
@@ -253,6 +258,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	document.querySelector('.logo').addEventListener('click', () => {
 		catalog.showCatalog({});
 	})
+
+	let empty_basket_a = document.querySelector('.empty-basket_a');
+	if(empty_basket_a)
+		empty_basket_a.addEventListener('click', () => {
+			catalog.showCatalog({});
+		})
+		
 	document.querySelector('button.login').addEventListener('click', (event) => {
 		auth.login(event);
 	})

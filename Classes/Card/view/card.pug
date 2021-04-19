@@ -1,18 +1,24 @@
 .each-good-content
+    a(href="http://shpargalkablog.ru/2013/09/scroll-block.html")
     p
         a(href='#') Категория
         |  > Какой-то товар
+    h1.title !{card.title}
     .card-content
-        h1.title !{card.title}
         .card-imgs
             .card-img-side
                 - let i = 0
                 while i < card.img_len
                     img(src="src/img/carts/"+card.id+"/"+ i++ +".png" alt='')
             .card-img-main
-                img(src="src/img/carts/"+card.id+"/0.png" alt='')
+                //- .prew
+                //-     .arr-left
+                img(src="src/img/carts/" + card.id + "/0.png" alt='')
+                //- .next
+                //-     .arr-right
+
         .each-good-description
-            .title !{card.title}
+            //.title !{card.title}
             .price
                 if(card.discount > 0)
                     - let disPrice = card.price * (1 - (card.discount / 100))

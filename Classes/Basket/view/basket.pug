@@ -1,28 +1,34 @@
-.baskets
-    .basket Корзина
-    each card in cards
-        .basket-body(data-id=card.id)
-            .basket-img
-                img.goods-img(src="src/img/carts/"+card.id+"/0.png" alt='')
-            .basket-title !{card.title}
-            .basket-btns
-                p.basket-price(data-price=card.price) !{card.price.toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
-                .calc
-                    button.delete-each-card(data-id=card.id) -
-                    .calc-content(data-id=card.id) !{card.cnt}
-                    button.add-each-card(data-id=card.id) +
-                .basket-trigger
-                    button.basket-delete(data-id=card.id)
-                    button.add-favorite.basket-fav(class=card.inFavorites ? "active" : "" data-id=card.id)
-.basket-total
-    .total-container
-        .quantity
-            span Товары
-            span !{basketCnt} шт
-        .price
-            span Итого
-            span
-                .total-int(data-total=basketTotal) !{basketTotal.toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')}
-                span ₽
-
-        button.go-pay Перейти к оформлению
+.basket-wrapper
+    .baskets
+        .basket Корзина
+        each card in cards
+            .basket-body(data-id=card.id)
+                .basket-img
+                    img.goods-img(src="src/img/carts/"+card.id+"/0.png" alt='')
+                .basket-title !{card.title}
+                .basket-btns
+                    p.basket-price(data-price=card.price) !{card.price.toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
+                    .calc
+                        button.delete-each-card(data-id=card.id) -
+                        .calc-content(data-id=card.id) !{card.cnt}
+                        button.add-each-card(data-id=card.id) +
+                    .basket-trigger
+                        button.basket-delete(data-id=card.id)
+                        button.add-favorite.basket-fav(class=card.inFavorites ? "active" : "" data-id=card.id)
+    .basket-total(style="display: " + (basketTotal>0 ? 'flex' : 'none'))
+        .total-container
+            .quantity
+                span Товары
+                span !{basketCnt} шт
+            .price
+                span Итого
+                span
+                    .total-int(data-total=basketTotal) !{basketTotal.toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')}
+                    span ₽
+            button.go-pay Перейти к оформлению
+.empty-basket(style="display: " + (basketTotal>0 ? 'none' : 'flex'))
+        .empty-basket_img
+        div
+            h2 Ваша корзина пуста
+                h4 Для выбора товаров 
+                    .empty-basket_a перейдите в каталог 

@@ -32,17 +32,17 @@ function multiItemSlider() {
             if (!arrowLeft.classList.contains('slider-show')) {
                 arrowLeft.classList.add('slider-show');
             }
-            console.log(3)
+            // console.log(3)
 
             if (arrowRight.classList.contains('slider-show')
                 && (positionLeftItem + wrapperWidth / itemWidth) >= position.getMax) {
                 arrowRight.classList.remove('slider-show');
             }
-            console.log(4)
+            // console.log(4)
 
             positionLeftItem += 1;
             transform -= _step * 4;
-            console.log(slides)
+            // console.log(slides)
 
         }
         if (direction === 'left') {
@@ -69,7 +69,7 @@ function multiItemSlider() {
             e.preventDefault();
             let direction = target.classList.contains('arrow-right') ? 'right' : 'left';
             transformItem(direction);
-            console.log(direction)
+            // console.log(direction)
         }
     }
 
@@ -85,6 +85,17 @@ function multiItemSlider() {
         }
     }
 }
-
 multiItemSlider('.similar')
 
+let slides = document.querySelectorAll('.card-img-main img'),
+    slide = document.querySelector('.card-img-main').offsetHeight,
+    dotsWrap = document.querySelector('.card-img-side');
+
+dotsWrap.height = slide.height
+console.log(dotsWrap.offsetHeight);
+console.log(slide);
+
+dotsWrap.addEventListener('click', function(event){
+    // console.log(slide);
+    slides.item(0).src = event.target.src
+})
