@@ -63,13 +63,15 @@ DB.connect( function( err, client ) {
           card = require('./Classes/Card/router/card'),
           auth = require('./Classes/Auth/router/auth'),
           category = require('./Classes/Category/router/category'),
-          favorites = require('./Classes/Favorites/router/favorites')
+          favorites = require('./Classes/Favorites/router/favorites'),
+          search = require('./Classes/Search/router/search')
     app.use('/', catalog);
     app.use('/auth', auth);
     app.use('/card', card);
     app.use('/category', category);
     app.use('/favorites', favorites);
     app.use('/basket', basket);
+    app.use('/search', search);
 
     // Запуск сервера
     app.listen(PORT, () => {

@@ -1,4 +1,5 @@
 header
+    a.before(href="http://coffee-brains.ru/learn/ali-old/index.html") до&#8617;
     .container.header-main
         .container-mini
             .logo
@@ -15,11 +16,11 @@ header
                             .category-item(data-category='Портативные колонки') Портативные колонки
                             .category-item(data-category='Комплектующие для ПК') Комплектующие для ПК
 
-            form#search
+            div#search
                 .search-wrapper
-                    input#searchGoods.search-wrapper_input(type='search' role='search' placeholder='Поиск')
+                    input#searchGoods.search-wrapper_input(type='search' role='search' autocomplete="off" placeholder='Поиск')
                 .search-wrap-btn
-                    button#search-btn.search-btn(type='submit' aria-label='Поиск товаров')
+                    button#search-btn.search-btn(aria-label='Поиск товаров')
         .container-mini
             #basket-main-btn.nav-elements()
                 span.counter !{basketCnt}

@@ -6,6 +6,7 @@ let db;
 module.exports = {
     connect: function( callback ) {
         MongoClient.connect( url,  {useUnifiedTopology: true, useNewUrlParser: true}, function( err, client ) {
+            console.log(err)
             db = client.db('Aliexpress');
             return callback( err );
         } );

@@ -63,6 +63,8 @@ exports.post = (req, res, callback)=> {
     let profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});
     let cardsCursor = db.collection("cards")
 
+    console.log("post catalog")
+
     cardsCursor = cardsCursor.aggregate([
         { $match: {
                 "id": {$nin: availableCards ? availableCards : []}

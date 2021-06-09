@@ -1,24 +1,24 @@
+const ajax = (url, body, func) => {
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("POST", url, true);
+	xhttp.setRequestHeader("Content-Type", "application/json");
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			func(this);
+		}
+	};
+	xhttp.send(JSON.stringify(body));
+}
+const space = arg => {
+	arg.toFixed(2);
+	arg = arg.toString();
+	return arg.replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ');
+}
 document.addEventListener('DOMContentLoaded', () => {
-	const space = arg => {
-		arg.toFixed(2);
-		arg = arg.toString();
-		return arg.replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ');
-	}
-	const ajax = (url, body, func) => {
-		var xhttp = new XMLHttpRequest();
-		xhttp.open("POST", url, true);
-		xhttp.setRequestHeader("Content-Type", "application/json");
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				func(this);
-			}
-		};
-		xhttp.send(JSON.stringify(body));
-	}
 	class Catalog{
 		constructor(){}
 		openCard(id){
-			this.show("/card", {"id": id}, cardScroll);
+			this.show("/card", {"id": id}, ()=>{cardImageChoice.update(); sliderBottom.update()});
 			window.history.pushState({id: id}, "card", "/card?id=" + id);
 		}
 		showCatalog(data){
@@ -271,5 +271,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	document.querySelector('button.signup').addEventListener('click', (event) => {
 		auth.signup(event);
 	})
+
+	window.onpopstate = function(event) {
+		document.location.reload()
+	};
 
 });

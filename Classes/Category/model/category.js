@@ -63,7 +63,7 @@ exports.post = (req, res, callback)=> {
 
     cardsCursor = cardsCursor.aggregate([
         { $match: {
-            "category": category,
+                "category": category,
                 "id": {$nin: availableCards ? availableCards : []}
             }
         },

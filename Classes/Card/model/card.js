@@ -4,6 +4,8 @@ const ObjectId = require('mongodb').ObjectID;
 exports.get = (req, res, callback)=>{
     const profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});
     const cardsCursor = db.collection("cards").findOne({id: req.query.id});
+    console.log("get card id", req.query.id)
+
     let favoritesCnt = 0;
     let basketCnt = 0;
 
@@ -33,6 +35,7 @@ exports.get = (req, res, callback)=>{
 exports.post = (req, res, callback)=> {
     const profileCursor = db.collection("profiles").findOne({_id: ObjectId(req.session.token)});
     const cardsCursor = db.collection("cards").findOne({id: req.body.id});
+    console.log("post card id", req.query.id)
 
     cardsCursor.then((card)=>{
         profileCursor.then(profile => {

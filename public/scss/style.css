@@ -1,12 +1,15 @@
 @keyframes show{0%{opacity:0}to{opacity:1}}
 @keyframes error{0%{border:3px solid #FF4747}25%{border:3px solid #0059FF}50%{border:3px solid #ff9a00}75%{border:3px solid #FF63F5}100%{border:3px solid #FF4747}}
 html{ min-height: 100%;}
-header{position: fixed;z-index: 2;top: 0;
+header{position: fixed;z-index: 200;top: 0;
     background-color: #fff; width: 100%}
-main{margin-top: 100px}
+main{margin-top: 90px}
 body{font-family:'Montserrat', sans-serif;}
 ul{list-style:none;margin:0;padding:0}
 #content-wrapper{width: 100%}
+
+.before{position: absolute; top: 10px;left: 10px;width: 30px;writing-mode: vertical-rl;
+    text-orientation: upright;letter-spacing: -2px;cursor: pointer; color: red}
 
 input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;-moz-appearance:none;appearance:none;margin:0}
 
@@ -123,13 +126,13 @@ button:focus{outline:transparent}
 	background-size:contain;cursor:pointer}
 
 .category-item{
-	font-weight:500; height:30px; color:black; font-size:14px; padding-top: 7px;
+	font-weight:600; height:30px; color:black; font-size:14px; padding-top: 7px;
 	text-overflow:ellipsis;white-space:nowrap;cursor:pointer}
 
 .category-item:hover{color:#F7971D; text-decoration:none}
 
 #cards-wrapper{display:flex;flex-wrap:wrap}
-.card-wrapper{width:185px;margin:0 10px 30px 10px}
+.card-wrapper{width:188px;margin:0 10px 30px 10px}
 .card-wrapper:hover .add-favorite{transition: transform 0.6s ease;display: block}
 
 .card-img-wrapper{position:relative; display:flex; margin:0 auto;
@@ -221,23 +224,15 @@ button:focus{outline:transparent}
 
 .card-content{display: -webkit-flex;display: -moz-flex;display: -ms-flex;display: -o-flex;display: flex;margin-bottom: 40px}
 
-.card-imgs{ display: flex; max-width: 620px;}
+.card-imgs{ display: flex; max-width: 620px;max-height: 700px}
 .each-good-description{display: block; float: right; left: 700px}
 .card-img-side{display: flex; flex-direction: column; justify-content: space-around; max-height: 700px; margin-right: 10px; cursor: pointer}
 .card-img-main img{min-width: 500px; max-width: 500px;max-height: 700px;margin: 0 20px 10px 0}
 .card-img-side img{max-width: 100px;max-height: 100px; margin-bottom: 10px}
-/* .prew, .next{
-	width: 30px; height: 100%; background-color: rgba(0, 0, 0, 0.4);
-	background-repeat: no-repeat;
-}
 
-.arr-left, .arr-right{width: 30px; height: 40px}
-.arr-left{background: url(../img/arrows/left-arrow.svg) center no-repeat; background-size: contain;}
-.arr-right{background: url(../img/arrows/right-arrow.svg) center no-repeat; background-size: contain;} */
+
 .dot-active{border: 2px solid;}
-.sticky {position: fixed; z-index: 1}
-.sticky-desc {margin-left: 620px}
-.stop {position: relative; z-index: 1}
+.scroll-desc {margin-left: 620px}
 
 .each-good-content p a:hover{text-decoration:none;color: #FF4747}
 .each-good-img{margin-right: 20px; height: auto; width: auto; max-width: 500px; max-height: 500px}

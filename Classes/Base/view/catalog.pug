@@ -7,4 +7,4 @@ each card in cards
         .card-body
             .card-price !{card.price.toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽
             - let attributes = card.inBasket ? {disabled: "true"} : {};
-            button.add-cat-card(data-id=card.id)&attributes(attributes)(data-title="Добавить в корзину")
+            button.add-cat-card(data-id=card.id )&attributes(attributes)()
