@@ -21,7 +21,6 @@ function openCategory(){
 function closeCategory(){
     category.classList.remove('show-main')
 }
-// category.addEventListener('click', openCategory)
 document.addEventListener('click', e => {
     const target = e.target;
     target === category ? openCategory() : target !== catCont ? closeCategory() : false;

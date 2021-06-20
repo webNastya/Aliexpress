@@ -226,7 +226,7 @@ button:focus{outline:transparent}
 
 .card-imgs{ display: flex; max-width: 620px;max-height: 700px}
 .each-good-description{display: block; float: right; left: 700px}
-.card-img-side{display: flex; flex-direction: column; justify-content: space-around; max-height: 700px; margin-right: 10px; cursor: pointer}
+.card-img-side{display: flex; flex-direction: column; /*justify-content: space-around;*/max-height: 700px; margin-right: 10px; cursor: pointer}
 .card-img-main img{min-width: 500px; max-width: 500px;max-height: 700px;margin: 0 20px 10px 0}
 .card-img-side img{max-width: 100px;max-height: 100px; margin-bottom: 10px}
 

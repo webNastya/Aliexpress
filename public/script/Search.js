@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-    var search = new Search()
+    let search = new Search()
 
     document.querySelector('#search-btn').addEventListener('click', search.handlers);
 })

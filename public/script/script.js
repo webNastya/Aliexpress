@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	class Catalog{
 		constructor(){}
 		openCard(id){
-			this.show("/card", {"id": id}, ()=>{cardImageChoice.update(); sliderBottom.update()});
+			this.show("/card", {"id": id}, ()=>{cardImageChoice.update(); sliderBottom.update(); cardScroll.update()});
 			window.history.pushState({id: id}, "card", "/card?id=" + id);
 		}
 		showCatalog(data){
@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			let password = document.querySelector('input[name="password"]').value
 
 			ajax("/auth/login", {"login" : login, "password": password}, (res)=>{
-				console.log(res.responseText)
+				// console.log(res.responseText)
 			})
 		}
 		signup(elem){
@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			let password = document.querySelector('input[name="password"]').value
 
 			ajax("/auth/signup", {"login" : login, "password": password}, (res)=>{
-				console.log(res.responseText)
+				// console.log(res.responseText)
 			})
 		}
 	}
@@ -274,6 +274,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	window.onpopstate = function(event) {
 		document.location.reload()
-	};
+	}; // переходы внутри окна вперёд-назад
 
 });

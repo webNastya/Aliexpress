@@ -1,34 +1,50 @@
-(function(){
-    let fixCard = document.querySelector('.card-imgs'),
-        scrollBlock = document.querySelector('.each-good-description'),
-        buttonBlock = document.querySelector('.characters'),
-        header = document.querySelector('header');
-    window.addEventListener('scroll', Ascroll, false)
-    function Ascroll() {
-        if (scrollBlock.getBoundingClientRect().top <= 60) {
-            fixCard.style.position = 'fixed'
-            fixCard.style.zIndex = '101'
-            scrollBlock.classList.add('scroll-desc') // margin-left: 620px
+class CardScroll {
+    constructor(){
+        this.imagesBlock = document.querySelector('.card-imgs');
+        this.descriptionBlock = document.querySelector('.each-good-description');
+        this.bottomBlock = document.querySelector('.characters');
+        this.header = document.querySelector('header');
+    }
+    startScroll(){
+        window.addEventListener('scroll', this.ascroll.bind(this) )
+    }
+    ascroll() {
+        if (this.descriptionBlock.offsetHeight > this.imagesBlock.offsetHeight){
+            if (this.descriptionBlock.getBoundingClientRect().top <= this.header.offsetHeight
+                && this.imagesBlock.offsetHeight + this.header.offsetHeight >= this.bottomBlock.getBoundingClientRect().top){
+                this.imagesBlock.style.top = this.bottomBlock.getBoundingClientRect().top - this.imagesBlock.offsetHeight +'px'
 
-            fixCard.style.top = buttonBlock.getBoundingClientRect().top - fixCard.offsetHeight +'px'
-            if (header.getBoundingClientRect().bottom - fixCard.offsetHeight === buttonBlock.getBoundingClientRect().top){
-                for (let i = 65; i <= header.offsetHeight; i--)
-                    fixCard.style.top = i + "px"
-            }
-            if(fixCard.getBoundingClientRect().top >= 0 ){
-                fixCard.style.top = 65 + "px"
-            }
+            } else if (this.descriptionBlock.getBoundingClientRect().top <= this.header.offsetHeight) {
+                this.imagesBlock.style.position = 'fixed'
+                this.imagesBlock.style.zIndex = '101'
+                this.descriptionBlock.classList.add('scroll-desc') // margin-left: 620px
 
-        } else {
-            fixCard.style.position = ''
-            fixCard.style.zIndex = ''
-            fixCard.style.top = scrollBlock.getBoundingClientRect().top + "px"
-            scrollBlock.classList.remove('scroll-desc')
+
+                if(this.imagesBlock.getBoundingClientRect().top >= 0 ){
+                    this.imagesBlock.style.top = this.header.offsetHeight + "px"
+                }
+
+            } else {
+                this.imagesBlock.style.position = ''
+                this.imagesBlock.style.zIndex = ''
+                this.imagesBlock.style.top = this.descriptionBlock.getBoundingClientRect().top + "px"
+                this.descriptionBlock.classList.remove('scroll-desc')
+            }
         }
     }
-}) ()
+    update(){
+        this.imagesBlock = document.querySelector('.card-imgs');
+        this.descriptionBlock = document.querySelector('.each-good-description');
+        this.bottomBlock = document.querySelector('.characters');
+        this.header = document.querySelector('header');
+        this.ascroll()
+    }
+}
+let cardScroll = new CardScroll()
+cardScroll.startScroll()
 
-//     cardScroll = function(){
+
+//cardScroll = function(){
 //     let a = document.querySelector('.card-imgs'),
 //         b = null,
 //         P = 0;
@@ -78,8 +94,5 @@
 //             b.className = '';
 //             b.style.top = '';
 //         }
-//         window.addEventListener('resize', function() {
-//             a.children[0].style.width = getComputedStyle(a, '').width
-//         }, false);
 //     }
 // }
