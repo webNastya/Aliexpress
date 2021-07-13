@@ -1,18 +1,11 @@
-const model = require('../model/category'),
+const model = require('../model/similar'),
       compileFile = require("pug").compileFile
 
-exports.get = (req, res) => {
-    res.cookie("currState", "category")
-    model.get(req, res, (data)=>{
-        res.send(compileFile('./view/index.pug')(data))
-    })
-}
 exports.post = (req, res) => {
-    res.cookie("currState", "category")
     model.post(req, res, (data)=>{
         if(req.body.lastId)
-            res.send(compileFile('./Classes/Base/view/catalog.pug')(data))
+            res.send(compileFile('./Classes/Base/view/similar.pug')(data))
         else
-            res.send(compileFile('./Classes/Base/view/catalogWrapper.pug')(data))
+            res.send(compileFile('./Classes/Base/view/similarWrapper.pug')(data))
     })
 }

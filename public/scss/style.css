@@ -304,9 +304,9 @@ button:focus{outline:transparent}
 .arrow-right{right: 30px}
 
 
-.similar-img{
+.similar-img{cursor: pointer;
 	width:auto;height:auto;max-width:220px;max-height:220px;object-fit:cover;margin: auto;
-	background-position:center;background-size:contain;background-repeat:no-repeat;border-top-left-radius:0;border-top-right-radius:0}
+	background-position:center;background-size:contain;background-repeat:no-repeat;}
 .similar-body{padding:20px 0 0 0}
 
 .similar-title{font-size: 26px;font-weight: 500;margin-bottom: 20px}

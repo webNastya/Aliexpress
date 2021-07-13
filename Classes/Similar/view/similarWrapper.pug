@@ -1,0 +1,14 @@
+.similar
+    .similar-title Товары той же категории
+    img.arrow-left.arrows(src="src/img/iconhub/arrow-left.png" alt='')
+    img.arrow-right.arrows.slider-show(src="src/img/iconhub/arrow-right.png" alt='')
+
+    .content-similar-wrapper
+        each card in similar_cards
+            .similar-wrapper(data-id=card.id)
+                .similar-img-wrapper
+                    img.similar-img(data-id=card.id src="src/img/carts/" + card.id + "/0.png" alt='')
+                    button.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
+                .similar-body.justify-content-between
+                    .similar-card-title(data-id=card.id) !{card.title}
+                    .similar-price !{card.price.toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ')} ₽

@@ -64,7 +64,8 @@ DB.connect( function( err, client ) {
           auth = require('./Classes/Auth/router/auth'),
           category = require('./Classes/Category/router/category'),
           favorites = require('./Classes/Favorites/router/favorites'),
-          search = require('./Classes/Search/router/search')
+          search = require('./Classes/Search/router/search'),
+          similar = require('./Classes/Similar/router/similar')
     app.use('/', catalog);
     app.use('/auth', auth);
     app.use('/card', card);
@@ -72,6 +73,7 @@ DB.connect( function( err, client ) {
     app.use('/favorites', favorites);
     app.use('/basket', basket);
     app.use('/search', search);
+    app.use('/similar', similar);
 
     // Запуск сервера
     app.listen(PORT, () => {

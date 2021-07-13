@@ -3,7 +3,7 @@ const ajax = (url, body, func) => {
 	xhttp.open("POST", url, true);
 	xhttp.setRequestHeader("Content-Type", "application/json");
 	xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
+		if (this.readyState === 4 && this.status === 200) {
 			func(this);
 		}
 	};
@@ -96,6 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 			else if (target.classList.contains('card-title') ||
 				target.classList.contains('card-img-top') ||
+				target.classList.contains('similar-img') ||
+				target.classList.contains('similar-card-title') ||
 				target.classList.contains('color')) {
 				catalog.openCard(target.dataset.id);
 			}
@@ -103,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				let category = target.dataset.category
 				catalog.showCategory({category: category})
 			}
-			else if(target.id == "show-more"){
+			else if(target.id === "show-more"){
 				let lastId = document.querySelector("#cards-wrapper >div:last-child").dataset.id
 				let data = {lastId: lastId}
 				let availableCards = []
@@ -138,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			let method = elem.classList.contains("active") ? "delete" : "add";
 
 			ajax("/favorites/"+method, {"card" : {"id": id}}, (res)=>{
-				if (res.responseText == "true") {
+				if (res.responseText === "true") {
 					elem.classList.add('active')
 					document.querySelector('#favorites-btn span').textContent++
 				}
@@ -151,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		handlers(event){
 			let target = event.target;
-			if(target.id == 'favorites-btn') {
+			if(target.id === 'favorites-btn') {
 				favorites.showFavorites({})
 			}
 		}
@@ -178,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			let id = elem.dataset.id;
 
 			ajax("/basket/delete", {"card" : {"id": id}}, (res)=>{
-				if (res.responseText == "true") {
+				if (res.responseText === "true") {
 					let cnt = document.querySelector('#basket-main-btn span')
 					cnt.textContent = cnt.textContent <= 0 ? 0 : --cnt.textContent
 				}
@@ -190,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			let id = elem.dataset.id;
 			
 			ajax("/basket/add/one", {"card" : {"id": id}}, (res)=>{
-				if (res.responseText == "true") {
+				if (res.responseText === "true") {
 					let price = document.querySelector('.basket-body[data-id="' + id + '"] ' +
 						'.basket-btns p.basket-price').dataset.price;
 					let total = document.querySelector('.total-int')
@@ -205,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			let id = elem.dataset.id;
 
 			ajax("/basket/delete/one", {"card" : {"id": id}}, (res)=>{
-				if (res.responseText == "true") {
+				if (res.responseText === "true") {
 					let price = document.querySelector('.basket-body[data-id="' + id + '"] ' +
 						'.basket-btns p.basket-price').dataset.price;
 					let total = document.querySelector('.total-int')
@@ -219,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		handlers(event){
 			let target = event.target;
-			if(target.id == 'basket-main-btn') {
+			if(target.id === 'basket-main-btn') {
 				basket.showBasket()
 			}
 		}

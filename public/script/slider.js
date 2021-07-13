@@ -2,8 +2,8 @@ class SliderBottom {
     constructor() { 
         this.sliderWrapper = document.querySelector('.content-similar-wrapper'); // обертка для .slider-item
         this.slides = document.querySelectorAll('.similar-wrapper'); // элементы (.slider-item)
-        this.arrowLeft = document.querySelector('.arrow-left'); // кнопка "LEFT"
-        this.arrowRight = document.querySelector('.arrow-right'); // кнопка "RIGHT"
+        this.arrowLeft = document.querySelector('.arrow-left');
+        this.arrowRight = document.querySelector('.arrow-right');
         this.wrapperWidth = parseFloat(getComputedStyle(this.sliderWrapper).width); // ширина обёртки
         this.itemWidth = parseFloat(getComputedStyle(this.slides[0]).width); // ширина одного элемента
         this._step = this.itemWidth / this.wrapperWidth * 100; // величина шага (для трансформации)
@@ -53,13 +53,12 @@ class SliderBottom {
         if (target.classList.contains('arrows')) {
             e.preventDefault();
             let direction = target.classList.contains('arrow-right') ? 'right' : 'left';
-            console.log(target)
             this.transformItem(direction);
         }
     }
     clickEventLong() {
-        this.arrowLeft.addEventListener('click', this.controlClick);
-        this.arrowRight.addEventListener('click', this.controlClick);
+        this.arrowLeft.addEventListener('click', this.controlClick.bind(this));
+        this.arrowRight.addEventListener('click', this.controlClick.bind(this));
     }
     update() {
         this.sliderWrapper = document.querySelector('.content-similar-wrapper');
@@ -76,6 +75,7 @@ class SliderBottom {
 
 let sliderBottom = new SliderBottom()
 sliderBottom.clickEventLong()
+
 
 class CardImageChoice {
     constructor() {

@@ -63,7 +63,6 @@
                     - delivery = delivery.charAt(0).toUpperCase() + delivery.slice(1);
                     p.delivery #[strong Доставка] #{delivery}
                     p.sales #[strong Продано] !{card.sales} шт.
-
 .characters
     .characteristics #[m Характеристики]
     for top_character in card.characters
@@ -73,73 +72,5 @@
                 .charact-cont
                     .character #[i !{character.name}]
                     div !{character.value}
-.similar
-    .similar-title Похожие товары
-    img.arrow-left.arrows(src="src/img/iconhub/arrow-left.png" alt='')
-    img.arrow-right.arrows.slider-show(src="src/img/iconhub/arrow-right.png" alt='')
 
-    .content-similar-wrapper
-
-        .similar-wrapper
-            .similar-img-wrapper
-                img.similar-img(src="src/img/carts/4528/0.png" alt='')
-                buuton.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
-            .similar-body.justify-content-between
-                .similar-card-title Заголовок
-                .similar-price 235 ₽
-
-        .similar-wrapper
-            .similar-img-wrapper
-                img.similar-img(src="src/img/carts/4529/0.png" alt='')
-                buuton.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
-            .similar-body.justify-content-between
-                .similar-card-title Заголовок
-                .similar-price 235 ₽
-
-        .similar-wrapper
-            .similar-img-wrapper
-                img.similar-img(src="src/img/carts/13205/0.png" alt='')
-                buuton.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
-            .similar-body.justify-content-between
-                .similar-card-title Заголовок
-                .similar-price 235 ₽
-
-        .similar-wrapper
-            .similar-img-wrapper
-                img.similar-img(src="src/img/carts/30610/0.png" alt='')
-                buuton.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
-            .similar-body.justify-content-between
-                .similar-card-title Заголовок
-                .similar-price 235 ₽
-
-        .similar-wrapper
-            .similar-img-wrapper
-                img.similar-img(src="src/img/carts/13205/0.png" alt='')
-                buuton.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
-            .similar-body.justify-content-between
-                .similar-card-title Заголовок
-                .similar-price 235 ₽
-
-        .similar-wrapper
-            .similar-img-wrapper
-                img.similar-img(src="src/img/carts/50157/0.png" alt='')
-                buuton.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
-            .similar-body.justify-content-between
-                .similar-card-title Заголовок
-                .similar-price 235 ₽
-
-        .similar-wrapper
-            .similar-img-wrapper
-                img.similar-img(src="src/img/carts/52663/0.png" alt='')
-                buuton.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
-            .similar-body.justify-content-between
-                .similar-card-title Заголовок
-                .similar-price 235 ₽
-
-        .similar-wrapper
-            .similar-img-wrapper
-                img.similar-img(src="src/img/carts/52663/0.png" alt='')
-                buuton.add-favorite(class=card.inFavorites ? "active" : "" data-id=card.id)
-            .similar-body.justify-content-between
-                .similar-card-title Заголовок
-                .similar-price 235 ₽
+include ../../Similar/view/similarWrapper
